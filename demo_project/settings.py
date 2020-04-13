@@ -25,12 +25,15 @@ SECRET_KEY = 'gvl^1+e=oedogqdi)*60rcoz#7kgp)qc4y5y&8)9)tf%vwd4hm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'compressor',
+    'sass_processor',
+    'prelude_django_admin_uikit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -113,8 +116,30 @@ USE_L10N = True
 
 USE_TZ = True
 
+PRELUDE_DJANGO_ADMIN_UIKIT = {
+    'version': '1.0.0'
+}
+
+# Django Compressor
+COMPRESS_ENABLED = True
+#COMPRESS_OFFLINE = True
+
+COMPRESS_OFFLINE_CONTEXT = True
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+    'sass_processor.finders.CssFinder'
+)
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'sass --scss {infile} {outfile}'),
+)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'

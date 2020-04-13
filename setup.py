@@ -3,11 +3,13 @@ from setuptools import setup, find_packages
 
 setup(
     name="prelude-django-admin-uikit",
-    version="0.1.0",
+    version="0.2.0",
     packages=['prelude_django_admin_uikit'],
 
     install_requires=[
-        'django>=3'
+        'django>=3',
+        'django-compressor',
+        'django-sass-processor'
     ],
 
     include_package_data=True,
