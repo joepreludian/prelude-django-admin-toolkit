@@ -1,0 +1,35 @@
+// 1. Your custom variables and variable overwrites.
+$global-color: #666;
+$global-link-color: #8D307B;
+
+$global-primary-background: #7920DE; //#874CB2;
+
+.uk-icon::before { background-image: url("uikit/tests/images/icons.svg"); }
+
+// 2. Import default variables and available mixins.
+@import "uikit/src/scss/variables-theme.scss";
+@import "uikit/src/scss/mixins-theme.scss";
+
+// 3. Your custom mixin overwrites.
+@mixin hook-card() { color: #000; }
+
+// 4. Import UIkit.
+@import "uikit/src/scss/uikit-theme";
+
+html {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.uk-background-primary-2 { 
+    background: darken($global-primary-background, 20%);
+    color: #fff;
+}
+
+#home {
+    h1 {
+        color: $global-primary-background
+    }
+    h2 {
+        color: red
+    }
+}

@@ -1,0 +1,102 @@
+---
+version: "3.7"
+
+services:
+  database:
+    image: 'docker.io/mdillon/postgis:11'
+    env_file:
+      - mngr-devel.env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - .:/app
+    ports:
+      - 5432:5432
+  memcached:
+    image: docker.io/memcached
+  redis:
+    image: docker.io/redis
+  flower:
+    build:
+      context: .
+      dockerfile: _devops/Dockerfile-django
+    volumes:
+      - .:/app
+    command: flower mngr --broker=redis://redis:6379/0 --port=5555
+    ports:
+      - 5555:5555
+    env_file:
+      - mngr-devel.env
+  celery_worker:
+    build:
+      context: .
+      dockerfile: _devops/Dockerfile-django
+    command: celery worker -A mngr.celeryconf
+    env_file:
+      - mngr-devel.env
+    depends_on:
+      - site
+      - database
+      - redis
+    volumes:
+      - .:/app
+  celery_beat:
+    build:
+      context: .
+      dockerfile: _devops/Dockerfile-django
+    command: celery beat -A mngr.celeryconf
+    env_file:
+      - mngr-devel.env
+    depends_on:
+      - site
+      - database
+      - redis
+    volumes:
+      - .:/app
+  site:
+    build:
+      context: .
+      dockerfile: _devops/Dockerfile-django
+    volumes:
+      - .:/app
+      - python_libs:/usr/local/lib/python3.7/site-packages
+    command: sh run_dev.sh
+    ports:
+      - 8000:8000
+    depends_on:
+      - database
+      - redis
+      - memcached
+    env_file:
+      - mngr-devel.env
+  ide:
+    image: docker.io/joepreludian/neovim
+    volumes:
+      - .:/app
+      - python_libs:/app_libs
+  elastic_search:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    environment:
+      - discovery.type=single-node
+    deploy:
+      resources:
+        limits:
+          memory: 4096M
+        reservations:
+          memory: 2048M
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.7.1
+    ports:
+      - 5601:5601
+    depends_on:
+      - elastic_search
+    environment:
+      - SERVER_NAME=MNGRKibana
+      - ELASTICSEARCH_HOSTS="http://elastic_search:9200"
+volumes:
+  db_data:
+  python_libs:
+  elasticsearch_data:
