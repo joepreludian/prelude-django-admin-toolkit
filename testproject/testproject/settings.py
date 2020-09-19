@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'prelude_django_admin_toolkit',
-    'django.contrib.admin',
+    'prelude_django_admin_toolkit.apps.PrlAdminConfig',
+    #'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

@@ -15,10 +15,10 @@ description = "A high-level Python Web framework that encourages rapid developme
 name = "django"
 optional = false
 python-versions = ">=3.6"
-version = "3.0.7"
+version = "3.1.1"
 
 [package.dependencies]
-asgiref = ">=3.2,<4.0"
+asgiref = ">=3.2.10,<3.3.0"
 pytz = "*"
 sqlparse = ">=0.2.2"
 
@@ -59,7 +59,7 @@ description = "Python client to neovim"
 name = "pynvim"
 optional = false
 python-versions = "*"
-version = "0.4.1"
+version = "0.4.2"
 
 [package.dependencies]
 greenlet = "*"
@@ -86,7 +86,8 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "0.3.1"
 
 [metadata]
-content-hash = "1cbe35351a20716f3f82b085989e71314f5266e0cadd5af1b195122c6b40ad93"
+content-hash = "6715e4ccc43664b5f6e27f2b963e6215f2f9386c48efe031abdc789746b2e234"
+lock-version = "1.0"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -95,8 +96,8 @@ asgiref = [
     {file = "asgiref-3.2.10.tar.gz", hash = "sha256:7e51911ee147dd685c3c8b805c0ad0cb58d360987b56953878f8c06d2d1c6f1a"},
 ]
 django = [
-    {file = "Django-3.0.7-py3-none-any.whl", hash = "sha256:e1630333248c9b3d4e38f02093a26f1e07b271ca896d73097457996e0fae12e8"},
-    {file = "Django-3.0.7.tar.gz", hash = "sha256:5052b34b34b3425233c682e0e11d658fd6efd587d11335a0203d827224ada8f2"},
+    {file = "Django-3.1.1-py3-none-any.whl", hash = "sha256:b5fbb818e751f660fa2d576d9f40c34a4c615c8b48dd383f5216e609f383371f"},
+    {file = "Django-3.1.1.tar.gz", hash = "sha256:59c8125ca873ed3bdae9c12b146fbbd6ed8d0f743e4cf5f5817af50c51f1fc2f"},
 ]
 greenlet = [
     {file = "greenlet-0.4.16-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:80cb0380838bf4e48da6adedb0c7cd060c187bb4a75f67a5aa9ec33689b84872"},
@@ -141,7 +142,7 @@ neovim = [
     {file = "neovim-0.3.1.tar.gz", hash = "sha256:a6a0e7a5b4433bf4e6ddcbc5c5ff44170be7d84259d002b8e8d8fb4ee78af60f"},
 ]
 pynvim = [
-    {file = "pynvim-0.4.1.tar.gz", hash = "sha256:55e918d664654cfa1c9889d3dbe7c63e9f338df5d49471663f78d54c85e84c58"},
+    {file = "pynvim-0.4.2.tar.gz", hash = "sha256:6bc6204d465de5888a0c5e3e783fe01988b032e22ae87875912280bef0e40f8f"},
 ]
 pytz = [
     {file = "pytz-2020.1-py2.py3-none-any.whl", hash = "sha256:a494d53b6d39c3c6e44c3bec237336e14305e4f29bbf800b599253057fbb79ed"},

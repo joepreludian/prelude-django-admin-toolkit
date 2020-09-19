@@ -1,5 +1,6 @@
-from django.apps import AppConfig
+from django.contrib.admin.apps import AdminConfig
 
 
-class PreludeDjangoAdminUikitConfig(AppConfig):
-    name = 'prelude_django_admin_uikit'
+class PrlAdminConfig(AdminConfig):
+    default_site = 'prelude_django_admin_toolkit.admin.PrlAdmin'
+
