@@ -3,7 +3,7 @@ from django.contrib.admin.sites import site as default_site
 
 
 class PrlAdmin(admin.AdminSite):
-    site_header = 'Preludian BruhAdmin'
+    #site_header = 'Preludian BruhAdmin'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

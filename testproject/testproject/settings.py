@@ -25,12 +25,13 @@ SECRET_KEY = '17@+9vblfh39$z*fpq2mcg5b6zg%j))+ni0p)(^@ij_rxwd2du'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'livereload',
     'prelude_django_admin_toolkit',
     'prelude_django_admin_toolkit.apps.PrlAdminConfig',
     #'django.contrib.admin',
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livereload.middleware.LiveReloadScript'
 ]
 
 ROOT_URLCONF = 'testproject.urls'
@@ -121,3 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LIVERELOAD_HOST = '0.0.0.0'

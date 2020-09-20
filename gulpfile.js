@@ -87,6 +87,17 @@ function buildHTMLTemplates() {
         .pipe(dest(templatesDestDir));
 }
 
+function buildNormalizeCSS() {
+    return src('./node_modules/normalize.css/normalize.css')
+        .pipe(dest(`${assetsDestDir}/css`));
+}
+
+function buildIcons() {
+    return src(`${sourceDir}/icon/**/*`)
+        .pipe(dest(`${assetsDestDir}/icon`));
+}
+
+
 function watchHTMLTemplates() {
     return src(`${sourceDir}/django_templates/**/*.html`)
         .pipe(watch(`${sourceDir}/django_templates/**/*.html`))
@@ -105,8 +116,9 @@ exports.clean = series(cleanWS);
 
 exports.build_dev = series(
     cleanWS,
+    buildIcons,
     parallel(
-        series(buildSass, slimCSS),
+        series(buildNormalizeCSS, buildSass, slimCSS),
         series(buildJSVendor, buildJSApp),
         series(buildHTMLTemplates)
     )
@@ -114,15 +126,18 @@ exports.build_dev = series(
 
 exports.build_production = series(
     cleanWS,
+    buildIcons,
     parallel(
         series(buildHTMLTemplates),
         series(buildJSVendor, buildJSApp, uglifyJS),
-        series(buildSass, slimCSS)
+        series(buildNormalizeCSS, buildSass, slimCSS)
     )
 );
 
 exports.watch = series(
     cleanWS,
+    buildNormalizeCSS,
+    buildIcons,
     parallel(
         watchSass,
         series(buildJSVendor, watchJSApp),
