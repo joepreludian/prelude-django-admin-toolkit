@@ -3,6 +3,7 @@ name = "prelude-django-admin-toolkit"
 version = "0.1.3"
 description = "An alternative Django Admin theme with Batteries; project Bruh"
 authors = ["Jonhnatha Trigueiro <joepreludian@gmail.com>"]
+include = ['prelude_django_admin_toolkit/static/**/*', 'prelude_django_admin_toolkit/templates/**/*']
 
 [tool.poetry.dependencies]
 python = "^3.8"
