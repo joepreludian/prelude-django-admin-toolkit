@@ -18,6 +18,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker.io/joepreludian/python-poetry:latest'
+                    reuseNode true
                 }
             }
             steps {
@@ -28,6 +29,7 @@ pipeline {
             agent {
                 docker {
                     image 'docker.io/joepreludian/python-poetry:latest'
+                    reuseNode true
                 }
             }
             steps {
