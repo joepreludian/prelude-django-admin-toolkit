@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'apt-get update && apt-get install tree -y && apt-get clean all'
+                sh 'apk update && apk install tree'
                 sh 'npm install'
                 sh 'npx gulp build_production'
                 sh 'tree prelude_django_admin_toolkit'
