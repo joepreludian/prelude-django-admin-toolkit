@@ -77,7 +77,7 @@
                     <ul class="uk-navbar-nav uk-visible@m">
                         {% block usertools %}
                         {% if has_permission %}
-                        <li>
+                        <li class='prl-username-item'>
                             <a href="#"><span class="uk-margin-small-right" uk-icon="user"></span>{% firstof user.get_short_name user.get_username %}</a>
                             <div class="uk-navbar-dropdown">
                                 <ul class="uk-nav uk-navbar-dropdown-nav">

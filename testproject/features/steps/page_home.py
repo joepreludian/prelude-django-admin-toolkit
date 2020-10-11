@@ -24,6 +24,7 @@ def then_I_see_login_password_fields(context):
 def then_I_see_info(context):
     br = context.browser
 
-    body = br.find_by_css('.prl-welcome-msg')
+    body = br.find_by_css('.prl-username-item')
 
-    assert 'Welcome, test' in body.text
+    print(f'BODY TEXT: {body.text}')
+    assert 'TEST' in body.text
