@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'docker.io/joepreludian/python-poetry:latest'
-        }
-    }
+    agent any
     stages {
         stage('Node Build') { 
             agent {
@@ -19,11 +15,21 @@ pipeline {
             }
         }
         stage('Test') { 
+            agent {
+                docker {
+                    image 'docker.io/joepreludian/python-poetry:latest'
+                }
+            }
             steps {
                 sh 'poetry -V'
             }
         }
         stage('Build') {
+            agent {
+                docker {
+                    image 'docker.io/joepreludian/python-poetry:latest'
+                }
+            }
             steps {
                 sh 'poetry build'
                 sh 'tree dist'
