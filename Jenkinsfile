@@ -22,8 +22,9 @@ pipeline {
                 }
             }
             steps {
-                unstash 'build'
+                unstash name: 'build'
                 dir('testproject') {
+                    sh 'apk add build-base gcc cmake linux-headers gcc libffi-dev libressl-dev'
                     sh 'poetry install'
                     sh 'poetry run python manage.py check'
                 }
