@@ -11,7 +11,7 @@ def then_I_see_project_name(context):
     br = context.browser
     body = br.find_by_id('uk-h1')
 
-    assert 'Prl Admin' in body.text
+    assert 'Django administration' in body.text
 
 @then('I see the fields of login and password')
 def then_I_see_login_password_fields(context):

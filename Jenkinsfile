@@ -18,7 +18,8 @@ pipeline {
         stage('Test') { 
             agent {
                 docker {
-                    image 'docker.io/joepreludian/python-poetry:latest'
+                    image 'docker.io/joepreludian/python-poetry:latest',
+                    args '-e HEADLESS=1'
                 }
             }
             steps {
