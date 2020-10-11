@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'apk update && apk install tree'
+                sh 'apk update && apk add tree'
                 sh 'npm install'
                 sh 'npx gulp build_production'
                 sh 'tree prelude_django_admin_toolkit'
