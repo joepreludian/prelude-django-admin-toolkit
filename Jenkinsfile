@@ -1,27 +1,32 @@
 pipeline {
-    agent any 
+    agent {
+        docker {
+            image 'docker.io/joepreludian/python-poetry:latest'
+        }
+    }
     stages {
-        stage('Build Gulp') { 
+        stage('Node Build') { 
             agent {
                 docker {
-                    image 'node:latest'
-                    //args  '-v /tmp:/tmp'
+                    image 'docker.io/node:alpine'
                 }
             }
             steps {
-                sh 'npm install --dev'
-                sh 'ls -lah'
-                sh 'gulp build_production'
+                sh 'apt-get update && apt-get install tree -y && apt-get clean all'
+                sh 'npm install'
+                sh 'npx gulp build_production'
+                sh 'tree prelude_django_admin_toolkit'
             }
         }
         stage('Test') { 
             steps {
-                sh 'ls -lh'
+                sh 'poetry -V'
             }
         }
-        stage('Deploy') { 
+        stage('Build') {
             steps {
-                sh 'ls -lh'
+                sh 'poetry build'
+                sh 'tree dist'
             }
         }
     }
