@@ -33,9 +33,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'apk add tree'
                 sh 'poetry build'
-                sh 'tree dist'
+                sh 'ls -lh dist'
             }
         }
     }
