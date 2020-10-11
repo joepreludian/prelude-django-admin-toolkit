@@ -22,7 +22,11 @@ pipeline {
                 }
             }
             steps {
-                sh 'poetry -V'
+                unstash 'build'
+                dir('testproject') {
+                    sh 'poetry install'
+                    sh 'poetry run python manage.py check'
+                }
             }
         }
         stage('Build') {
