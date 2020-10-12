@@ -40,7 +40,8 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'pypi-joepreludian', usernameVariable: '', passwordVariable: 'PYPI_TOKEN')]) {
+                withCredentials([usernamePassword(credentialsId: 'pypi-joepreludian', usernameVariable: 'PYPI_USER', passwordVariable: 'PYPI_TOKEN')]) {
+                    echo 'Update Token'
                     sh 'poetry config pypi-token.pypi "$PYPI_TOKEN"'
                 }
 
