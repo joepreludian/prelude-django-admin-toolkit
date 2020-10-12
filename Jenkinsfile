@@ -40,15 +40,28 @@ pipeline {
                 }
             }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'pypi-joepreludian', usernameVariable: 'PYPI_USER', passwordVariable: 'PYPI_TOKEN')]) {
-                    echo 'Update Token'
-                    sh 'poetry config pypi-token.pypi "$PYPI_TOKEN"'
-                }
-
                 unstash name: 'build'
                 
                 sh 'poetry build'
                 sh 'ls -lh dist'
+
+                stash name: 'dist', includes: 'dist/**/*'
+            }
+        }
+        stage('Deploy') {
+            agent {
+                docker {
+                    image 'docker.io/joepreludian/python-poetry:latest'
+                }
+            }
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'pypi-joepreludian', usernameVariable: 'PYPI_USER', passwordVariable: 'PYPI_TOKEN')]) {
+                    sh 'poetry config pypi-token.pypi "$PYPI_TOKEN"'
+                }
+
+                unstash name: 'dist'
+                
+                sh 'poetry publish'
             }
         }
     }
