@@ -40,7 +40,12 @@ pipeline {
                 }
             }
             steps {
+                withCredentials([string(credentialsId: 'pypi-joepreludian', variable: 'PYPI_TOKEN')]) {
+                    sh 'poetry config pypi-token.pypi "$PYPI_TOKEN"'
+                }
+
                 unstash name: 'build'
+                
                 sh 'poetry build'
                 sh 'ls -lh dist'
             }
