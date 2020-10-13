@@ -32,14 +32,18 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'livereload',
+    #'django.contrib.admin',
+    
+    # These two are mandatory
     'prelude_django_admin_toolkit',
     'prelude_django_admin_toolkit.apps.PrlAdminConfig',
-    #'django.contrib.admin',
+    
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'demoapp',
     'behave_django'
 ]
 
@@ -124,4 +128,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LIVERELOAD_HOST = '0.0.0.0'
+LIVERELOAD_HOST = os.environ.get('LIVERELOAD_HOST', '127.0.0.1')

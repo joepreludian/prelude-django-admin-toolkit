@@ -1,9 +1,14 @@
 from django.contrib import admin
-from django.contrib.admin.sites import site as default_site
+from django.contrib.admin.sites import site
+from .forms import PrlModelForm
+
+
+class PrlModelAdmin(admin.ModelAdmin):
+    form = PrlModelForm
 
 
 class PrlAdmin(admin.AdminSite):
-    #site_header = 'Preludian BruhAdmin'
+    site_header = 'TEST'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
