@@ -10,6 +10,10 @@ class TimeCapsule(PrlModelAdmin):
 
     form = forms.PrlModelForm
 
+    list_display = ['name', 'age', 'current_date']
+
+    list_filter = ['current_date', 'age']
+
     fieldsets = (
         (None, {
             'fields': ('name', 'current_date', 'current_datetime')

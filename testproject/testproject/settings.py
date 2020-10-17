@@ -129,3 +129,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LIVERELOAD_HOST = os.environ.get('LIVERELOAD_HOST', '127.0.0.1')
+
+from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer
+
+my_admin = PreludeAdminCustomizer(site_header='MyAdmin')
+
+PRELUDE_ADMIN = {
+    'customizer_object': my_admin
+}
