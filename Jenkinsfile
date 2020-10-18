@@ -32,7 +32,9 @@ pipeline {
                     sh 'poetry run pytest --cov prelude_django_admin_toolkit --cov-report html --cov-report xml'
                     sh 'poetry run python manage.py behave'
                 
-                	junit 'coverage.xml'
+                	withCredentials([string(credentialsId: 'codecov-joepreludian-prelude_bruh', variable: 'CODECOV_TOKEN')]) {
+                	    sh 'bash <(curl -s https://codecov.io/bash)'
+                	}
                 		
                 	publishHTML (target: [
 						allowMissing: false,
