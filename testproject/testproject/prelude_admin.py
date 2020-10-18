@@ -8,6 +8,6 @@ my_admin.register_menu(
     name=_('Authorization'),
     items= [
         {'name': _('Item'), 'icon':'heart', 'model': 'demoapp.item'},
-        {'name': _('External'), 'url': 'http://google.com'},
-        {'name': _('External 2'), 'model': 'demoapp.item'}
+        {'name': _('External'), 'to': 'http://google.com'},
+        {'name': _('External 2'), 'to': 'demoapp.item'}
     ])

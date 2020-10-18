@@ -1,8 +1,7 @@
 from django.test import TestCase
 from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer
-from pip._internal.exceptions import NoneMetadataError
 
-# Create your tests here.
+
 class PreludeAdminCustomizerTestCase(TestCase):
     
     def setUp(self):
@@ -54,3 +53,4 @@ class PreludeAdminCustomizerTestCase(TestCase):
         self.assertEqual(single_menu['name'], 'SingleMenu')
         self.assertEqual(single_menu['to'], 'http://tempurl')
         self.assertEqual(single_menu['icon'], 'house')
+    
