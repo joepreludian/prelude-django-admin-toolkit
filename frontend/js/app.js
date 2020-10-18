@@ -1,3 +1,3 @@
 $(function(){
-    alert('OK123123!');
+    //alert('OK123123!');
 });

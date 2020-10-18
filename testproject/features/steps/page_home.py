@@ -1,4 +1,5 @@
 from behave import when, then
+from testproject.prelude_admin import my_admin
 
 
 @when('I access the admin home page')
@@ -11,7 +12,7 @@ def then_I_see_project_name(context):
     br = context.browser
     body = br.find_by_id('uk-h1')
 
-    assert 'Django administration' in body.text
+    assert my_admin.site_header in body.text
 
 @then('I see the fields of login and password')
 def then_I_see_login_password_fields(context):

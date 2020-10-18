@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
-
+# @todo test
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -130,9 +130,7 @@ STATIC_URL = '/static/'
 
 LIVERELOAD_HOST = os.environ.get('LIVERELOAD_HOST', '127.0.0.1')
 
-from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer
-
-my_admin = PreludeAdminCustomizer(site_header='MyAdmin')
+from .prelude_admin import my_admin
 
 PRELUDE_ADMIN = {
     'customizer_object': my_admin
