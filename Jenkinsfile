@@ -55,6 +55,9 @@ pipeline {
                     image 'docker.io/joepreludian/python-poetry:latest'
                 }
             }
+            when {
+                branchName 'master'
+            }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'pypi-joepreludian', usernameVariable: 'PYPI_USER', passwordVariable: 'PYPI_TOKEN')]) {
                     sh 'poetry config pypi-token.pypi "$PYPI_TOKEN"'
@@ -65,5 +68,10 @@ pipeline {
                 sh 'poetry publish'
             }
         }
+    }
+    post {
+    	always {
+        	sh 'docker container prune -f'
+    	}
     }
 }
