@@ -66,7 +66,7 @@ pipeline {
 
                 unstash name: 'dist'
                 
-                sh 'poetry publish'
+                //sh 'poetry publish'
             }
         }
     }
