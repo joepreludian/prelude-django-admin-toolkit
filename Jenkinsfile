@@ -57,6 +57,7 @@ pipeline {
             }
             when {
                 branchName 'master'
+                
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'pypi-joepreludian', usernameVariable: 'PYPI_USER', passwordVariable: 'PYPI_TOKEN')]) {
