@@ -32,7 +32,7 @@ pipeline {
                     sh 'poetry run pytest --cov prelude_django_admin_toolkit --cov-report xml'
                     sh 'poetry run python manage.py behave'
                    	
-                   	publishCoverage
+                   	publishCoverage()
                 }
             }
         }
