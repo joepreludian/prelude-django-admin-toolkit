@@ -29,8 +29,10 @@ pipeline {
                     sh 'wget https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz -O /tmp/geckodriver.tar.gz && tar zxvf /tmp/geckodriver.tar.gz && mv geckodriver /usr/bin && chmod +x /usr/bin/geckodriver'
                     sh 'poetry install'
                     sh 'poetry run python manage.py check'
-                    sh 'poetry run pytest --cov prelude_django_admin_toolkit'
+                    sh 'poetry run pytest --cov prelude_django_admin_toolkit --cov-report xml'
                     sh 'poetry run python manage.py behave'
+                   	
+                   	publishCoverage
                 }
             }
         }
