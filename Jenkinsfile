@@ -33,7 +33,8 @@ pipeline {
                     sh 'poetry run python manage.py behave'
                 
                 	withCredentials([string(credentialsId: 'codecov-joepreludian-prelude_bruh', variable: 'CODECOV_TOKEN')]) {
-                	    sh 'bash <(curl -s https://codecov.io/bash)'
+                	    sh 'curl -s https://codecov.io/bash -o codecov.sh'
+                	    sh 'bash codecov.sh'
                 	}
                 		
                 	publishHTML (target: [
