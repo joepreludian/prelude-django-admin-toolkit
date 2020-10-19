@@ -59,8 +59,19 @@
                 </a>
                 {# Main Menu #}
                 <ul class="uk-navbar-nav uk-visible@m">
-                    <li class="uk-active"><a href="#">{{ prl_admin }}</a></li>
-                    <li>
+                	{% for menu in custom_menu %}
+						{% if menu.to %}
+							<li class="uk-active"><a href="#">
+								{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
+						{% else %}
+							<li class="uk-active"><a href="#">WO TO</a></li>
+						{% endif %}
+						
+					{% endfor %}    
+					{% comment %}
+					<li class="uk-active"><a href="#">Temp</a></li>
+					
+					<li>
                         <a href="#">Parent</a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
@@ -70,7 +81,10 @@
                             </ul>
                         </div>
                     </li>
+
                     <li><a href="#">Username</a></li>
+					{% endcomment %}
+
                 </ul>
             </div>
 

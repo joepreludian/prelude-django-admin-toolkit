@@ -7,9 +7,6 @@ class PreludeAdminCustomizerTestCase(TestCase):
     def setUp(self):
         self.c = PreludeAdminCustomizer(site_header='PreludeAdmin')
         
-#         self.c.register_menu(name='TmpMenu', items=[
-#             {'name': 'temp_value'},
-#         ])
     
     def test_clean_context(self):
         context_vars = self.c.get_context_vars()
