@@ -12,7 +12,10 @@ class PreludeAdminCustomizerTestCase(TestCase):
         context_vars = self.c.get_context_vars()
         
         expected_context_vars = {
-            'custom_menu': []
+            'custom_menu': [],
+            'admin': {
+                'site_css': 'site.css'
+            }
         }
         
         self.assertEqual(context_vars, expected_context_vars)
@@ -23,6 +26,9 @@ class PreludeAdminCustomizerTestCase(TestCase):
         ])
 
         expected_context_vars = {
+            'admin': {
+                'site_css': 'site.css'
+            },
             'custom_menu': [
                 {'name': 'TmpMenu', 
                  'to': None,
@@ -30,7 +36,8 @@ class PreludeAdminCustomizerTestCase(TestCase):
                  'items': [
                     {'name': 'temp_value',
                      'icon': None, 
-                     'to': None}
+                     'to': None,
+                     'type': 'item'}
                 ]}
             ]}
 
@@ -50,4 +57,24 @@ class PreludeAdminCustomizerTestCase(TestCase):
         self.assertEqual(single_menu['name'], 'SingleMenu')
         self.assertEqual(single_menu['to'], 'http://tempurl')
         self.assertEqual(single_menu['icon'], 'house')
-    
+   
+    def test_detect_divider(self):
+        self.c.register_menu('SingleHR', items=[{'type': 'divider'}])
+
+        context = self.c.get_context_vars()
+        
+        menu = context['custom_menu'][0]
+        print(menu['items'][0])
+        
+        self.assertEqual(menu['name'], 'SingleHR')
+        self.assertTrue('type' in menu['items'][0].keys())
+        
+        self.assertEqual(menu['items'][0]['type'], 'divider')
+
+    def test_override_site_css(self):
+        
+        self.c.site_css = 'another_site.css'
+        
+        context = self.c.get_context_vars()
+        
+        self.assertEqual(context['admin']['site_css'], 'another_site.css')

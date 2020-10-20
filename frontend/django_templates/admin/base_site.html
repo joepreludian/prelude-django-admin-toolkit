@@ -12,10 +12,22 @@
         <div class="uk-offcanvas-bar">
             <button class="uk-offcanvas-close" type="button" uk-close></button>
             <ul class="uk-nav uk-nav-default">
-                
-                <li class="uk-nav-header">Header</li>
-                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Item</a></li>
-                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span> Item</a></li>
+                {% for menu in custom_menu %}
+					{% if not menu.items %}
+						<li class="uk-nav-header"><a href="{{ menu.to }}">
+							{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
+					{% else %}
+						<li class="uk-nav-header"><a href="#">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
+						{% for submenu in menu.items %}
+							{% if submenu.type == 'divider' %}
+								<li class="uk-nav-divider"></li>	
+							{% else %}
+								<li><a href="{{ submenu.to }}">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ submenu.icon }}"></span> {% endif %} {{ submenu.name }}</a></li>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+					
+				{% endfor %}
                 
                 <li class="uk-nav-header">About</li>
                 <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> About Preludian</a></li>
@@ -40,12 +52,8 @@
     </div>
     
     <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
-        <div class="uk-background-primary-2 uk-text-bold uk-padding-small uk-padding-remove-top uk-padding-remove-bottom">
-            <div class="uk-visible@s">
-            </div>
-        </div>
-
-        <nav class="uk-background-primary uk-light" uk-navbar>
+        
+        <nav class="uk-background-primary-2" uk-navbar>
             <div class="uk-navbar-left">
                 {# bar left - toggle button #}
                 <a class="uk-navbar-toggle" uk-toggle="target: #offcanvas-nav">
@@ -60,14 +68,26 @@
                 {# Main Menu #}
                 <ul class="uk-navbar-nav uk-visible@m">
                 	{% for menu in custom_menu %}
-						{% if menu.to %}
-							<li class="uk-active"><a href="#">
-								{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
-						{% else %}
-							<li class="uk-active"><a href="#">WO TO</a></li>
-						{% endif %}
-						
-					{% endfor %}    
+					{% if not menu.items %}
+						<li><a href="{{ menu.to }}">
+							{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
+					{% else %}
+						<li>
+							<a href="#">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a>
+							<div class="uk-navbar-dropdown">
+								<ul class="uk-nav uk-navbar-dropdown-nav">
+									{% for submenu in menu.items %}
+										{% if submenu.type == 'divider' %}
+											<li class="uk-nav-divider"></li>	
+										{% else %}
+											<li><a href="{{ submenu.to }}">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ submenu.icon }}"></span> {% endif %} {{ submenu.name }}</a></li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+						</li>
+					{% endif %}
+					{% endfor %}
 					{% comment %}
 					<li class="uk-active"><a href="#">Temp</a></li>
 					
@@ -129,7 +149,7 @@
         </nav>
     </div>
 
-    <div class="uk-background-muted uk-padding-small uk-padding-remove-top uk-padding-remove-bottom">
+    <div class="uk-background-muted uk-padding-small uk-padding-remove-top uk-padding-remove-bottom uk-visible@s">
         {% block breadcrumbs %}
             <ul class="uk-breadcrumb">
                 <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>

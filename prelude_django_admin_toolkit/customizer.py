@@ -1,10 +1,11 @@
-
+DIVIDER = 'divider'
 
 class PreludeAdminCustomizer(object):
     
     def __init__(self, site_header=None):
         self.site_header = site_header
         self.main_menu = []
+        self.site_css = 'site.css'
 
     def register_menu(self, name, icon=None, to=None, items=None):
         menu_item = {
@@ -15,12 +16,12 @@ class PreludeAdminCustomizer(object):
         }
        
         if items is not None: 
-            # normalizing menu_items
             normalized_items = [
                 {
                     'name': x.get('name', None),
                     'icon': x.get('icon', None),
-                    'to': x.get('to', None)
+                    'to': x.get('to', None),
+                    'type': x.get('type', 'item')
                 } for x in items
             ]
             
@@ -30,7 +31,10 @@ class PreludeAdminCustomizer(object):
 
     def get_context_vars(self):
         return {
-            'custom_menu': self.main_menu
+            'custom_menu': self.main_menu,
+            'admin': {
+                'site_css': self.site_css 
+            }
         }
 
     def add_page(self, url, name, handler):

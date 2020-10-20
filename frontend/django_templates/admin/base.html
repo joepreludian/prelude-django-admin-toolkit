@@ -5,7 +5,7 @@
 <title>{% block title %}{% endblock %}</title>
     <link type="text/css" href="{% static 'prelude_django_admin_toolkit/css/normalize.css' %}" rel="stylesheet" media="screen">
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
-    <link type="text/css" href="{% static 'prelude_django_admin_toolkit/css/site.css' %}" rel="stylesheet" media="screen">
+    <link type="text/css" href="{% static 'prelude_django_admin_toolkit/css/' %}{{ admin.site_css }}" rel="stylesheet" media="screen">
 
     <link rel="apple-touch-icon" sizes="57x57" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-57x57.png' %}">
     <link rel="apple-touch-icon" sizes="60x60" href="{% static 'prelude_django_admin_toolkit/icon/apple-icon-60x60.png' %}">

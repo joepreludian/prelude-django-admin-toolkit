@@ -1,14 +1,19 @@
-from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer
+from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer, DIVIDER
 from django.utils.translation import gettext_lazy as _
 
 
 my_admin = PreludeAdminCustomizer(site_header='MyAdmin')
 
+my_admin.site_css = 'site_yellow.css'
+
 my_admin.register_menu(
-    name=_('Authorization'),
+    name=_('Itemization'),
+    icon='heart',
     items= [
-        {'name': _('Item'), 'icon':'heart', 'to': 'demoapp.item'},
-        {'name': _('External'), 'to': 'http://google.com'},
+        {'name': _('Heart Item'), 'icon':'user', 'to': 'demoapp.item'},
+        {'name': _('External'), 'icon': 'heart', 'to': 'http://google.com'},
+        {'type': DIVIDER },
+        {'name': _('External 2'), 'to': 'demoapp.item'},
         {'name': _('External 2'), 'to': 'demoapp.item'}
     ])
 

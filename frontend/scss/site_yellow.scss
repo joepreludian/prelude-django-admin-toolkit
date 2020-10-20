@@ -1,7 +1,7 @@
-// 1. Your custom variables and variable overwrites.
-$global-color: #666;
-$global-link-color: rgb(78, 154, 6);
-$global-primary-background: rgb(44, 141, 124);
+$global-color: #3A3A3A;
+$global-link-color: #4F1060;
+$global-link-color-active: green;
+$global-primary-background: #ffd842;
 
 .uk-icon::before { background-image: url("uikit/tests/images/icons.svg"); }
 
@@ -22,7 +22,16 @@ html {
 
 .uk-background-primary-2 { 
     background: lighten($global-primary-background, 5%);
-    a { color: $global-link-color }
+    a { 
+		color: $global-link-color 
+	}
+	.uk-navbar-nav {
+		li {
+			a {		
+				color: $global-color;
+			}
+		}
+	}
 }
 
 .uk-offcanvas {
@@ -36,8 +45,4 @@ html {
             }
         }*/
     }
-}
-
-.prl-content {
-	
 }
