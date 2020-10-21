@@ -149,9 +149,9 @@
         </nav>
     </div>
 
-    <div class="uk-background-muted uk-padding-small uk-padding-remove-top uk-padding-remove-bottom uk-visible@s">
+    <div class="uk-background-muted uk-visible@s">
         {% block breadcrumbs %}
-            <ul class="uk-breadcrumb">
+            <ul class="uk-breadcrumb uk-margin-remove">
                 <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
                 {% if title %}
                 <li><span>{{ tilte }}</span></li>
@@ -174,9 +174,11 @@
 
     <!-- Content -->
     {% comment %}<div id="content" class="{% block coltype %}colM{% endblock %}">{% endcomment %}
-    <div class="prl-content uk-padding-small">
+    <div class="prl-content">
+    	{% comment %}
         {% block pretitle %}{% endblock %}
         {% block content_title %}{% if title %}<h3>{{ title }}</h3>{% endif %}{% endblock %}
+        {% endcomment %}
         {% block content %}
             {% block object-tools %}{% endblock %}
             {{ content }}

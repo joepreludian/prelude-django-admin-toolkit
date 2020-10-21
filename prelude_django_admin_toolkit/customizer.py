@@ -37,6 +37,9 @@ class PreludeAdminCustomizer(object):
             }
         }
 
+    def page_about(self):
+        pass
+
     def add_page(self, url, name, handler):
         pass
 
