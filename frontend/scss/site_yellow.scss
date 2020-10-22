@@ -20,6 +20,11 @@ html {
     size: 14px;
 }
 
+.uk-breadcrumb {
+	padding: 0 10px;
+	margin-bottom: 0;
+}
+
 .uk-background-primary-2 { 
     background: lighten($global-primary-background, 5%);
     a { 
