@@ -30,4 +30,4 @@ class TimeCapsule(PrlModelAdmin):
 
 @admin.register(Item, site=prl_admin)
 class Item(PrlModelAdmin):
-    pass
+    list_display = ['name', 'item_no', 'time_capsule']
