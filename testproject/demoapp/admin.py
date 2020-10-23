@@ -13,6 +13,8 @@ class TimeCapsule(PrlModelAdmin):
     list_display = ['name', 'age', 'current_date']
 
     list_filter = ['current_date', 'age']
+    
+    search_fields = ('name', )
 
     fieldsets = (
         (None, {
