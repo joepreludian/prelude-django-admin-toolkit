@@ -61,7 +61,7 @@
     {% endif %}
     <div class="module{% if cl.has_filters %} filtered{% endif %}" class="uk-clear-fix"> {# Changelist #}
       
-      {% block search %}SEARCH{% search_form cl %}{% endblock %}
+      {% block search %}{% search_form cl %}{% endblock %}
       
       {% block date_hierarchy %}{% if cl.date_hierarchy %}{% date_hierarchy cl %}{% endif %}{% endblock %}
 
