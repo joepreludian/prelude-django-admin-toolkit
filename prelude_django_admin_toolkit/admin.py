@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
 from django.conf import settings
-from django.contrib.admin import helpers, widgets
+from django.contrib.admin import helpers
 from django.utils.translation import gettext as _
 
 
@@ -11,7 +11,9 @@ from prelude_django_admin_toolkit.forms import PrlModelForm
 
 class PrlActionForm(helpers.ActionForm):
     action = forms.ChoiceField(label=_('Action:'))
-    action.widget.attrs['class'] = 'uk-select'
+    action.widget.attrs.update({
+        'class': 'uk-select'
+    })
     
 
 # Defining the PRLModelAdmin
