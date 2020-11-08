@@ -45,9 +45,20 @@ html {
             font-size: 2em;
         }
         
-        /*&.uk-parent {
-            .header {
-            }
-        }*/
     }
+}
+
+// Django Customizations
+.prl-content {
+	
+	.paginator {
+		border: none !important;
+		
+		a:link, a:visited { 
+			background-color: $global-primary-background !important;
+			color: $global-color !important;
+			padding: 10px 18px;
+		}
+	}
+	
 }
