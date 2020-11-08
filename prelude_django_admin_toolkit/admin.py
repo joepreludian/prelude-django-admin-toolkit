@@ -12,7 +12,7 @@ from prelude_django_admin_toolkit.forms import PrlModelForm
 class PrlActionForm(helpers.ActionForm):
     action = forms.ChoiceField(label=_('Action:'))
     action.widget.attrs.update({
-        'class': 'uk-select'
+        'class': 'uk-select uk-form-width-large'
     })
     
 
