@@ -175,7 +175,7 @@
     <!-- Content -->
     {% comment %}<div id="content" class="{% block coltype %}colM{% endblock %}">{% endcomment %}
     <div class="prl-content">
-    	{% comment %}
+        {% comment %}
         {% block pretitle %}{% endblock %}
         {% block content_title %}{% if title %}<h3>{{ title }}</h3>{% endif %}{% endblock %}
         {% endcomment %}
@@ -183,7 +183,9 @@
             {% block object-tools %}{% endblock %}
             {{ content }}
         {% endblock %}
+       	{% comment %} 
         {% block sidebar %}{% endblock %}
+        {% endcomment %}
     </div>
     {% comment %}</div>{% endcomment %}
     <!-- END Content -->

@@ -37,7 +37,7 @@
 {% endif %}
 
 {% block content %}
-
+<div id="content-main">
 	{# APP Header #}
 	<div class="uk-clearfix uk-background-muted uk-padding-remove">
 		<div class="uk-padding uk-padding-remove-vertical" uk-height-match>
@@ -59,7 +59,7 @@
         </p>
         {{ cl.formset.non_form_errors }}
     {% endif %}
-    <div class="module{% if cl.has_filters %} filtered{% endif %}" class="uk-clear-fix"> {# Changelist #}
+    <div class="module{% if cl.has_filters %} filtered{% endif %} uk-clear-fix"> {# Changelist #}
       
       {% block search %}{% search_form cl %}{% endblock %}
       
@@ -78,6 +78,7 @@
       {% if cl.formset %}
         <div>{{ cl.formset.management_form }}</div>
       {% endif %}
+      
       {% block result_list %}
           {% if action_form and actions_on_top and cl.show_admin_actions %}{% admin_actions %}{% endif %}
           {% result_list cl %}
@@ -87,4 +88,5 @@
       </form>
     </div>
   </div>
+</div>
 {% endblock %}
