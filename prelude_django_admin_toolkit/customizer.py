@@ -2,10 +2,11 @@ DIVIDER = 'divider'
 
 class PreludeAdminCustomizer(object):
     
-    def __init__(self, site_header=None):
+    def __init__(self, site_header=None, show_about=True):
         self.site_header = site_header
         self.main_menu = []
         self.site_css = 'site.css'
+        self.show_about = show_about
 
     def register_menu(self, name, icon=None, to=None, items=None):
         menu_item = {
@@ -30,15 +31,14 @@ class PreludeAdminCustomizer(object):
         self.main_menu.append(menu_item)
 
     def get_context_vars(self):
+        
         return {
             'custom_menu': self.main_menu,
             'admin': {
-                'site_css': self.site_css 
+                'site_css': self.site_css,
+                'show_about': self.show_about
             }
         }
-
-    def page_about(self):
-        pass
 
     def add_page(self, url, name, handler):
         pass

@@ -7,6 +7,8 @@ from django.utils.translation import gettext as _
 
 from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer
 from prelude_django_admin_toolkit.forms import PrlModelForm
+from django.http.response import HttpResponse
+from django.shortcuts import render
 
 
 class PrlActionForm(helpers.ActionForm):
@@ -39,11 +41,11 @@ class PrlAdmin(admin.AdminSite):
             }
             
         self.prl_customizer = custom_settings['customizer_object']
-        
         self.load_customizer()
     
     def load_customizer(self):
         self.site_header = self.prl_customizer.site_header
+        self.show_about = self.prl_customizer.show_about
     
     def each_context(self, request):
         context_vars = super().each_context(request)
@@ -52,9 +54,19 @@ class PrlAdmin(admin.AdminSite):
  
         return context_vars
      
+
+    def page_about(self, request):
+        return render(request, 'admin/pages/about.html', self.each_context(request))
+    
     def get_urls(self):
-        
+        from django.urls import path
+
         url_patterns = super().get_urls()
+        
+        if self.show_about:
+            url_patterns.append(
+                path('about/', self.admin_view(self.page_about), name='about')
+            )
         
         return url_patterns
 
