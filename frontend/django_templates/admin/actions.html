@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="actions uk-child-width-expand uk-grid-medium" uk-grid>
+<div class="actions uk-child-width-expand uk-grid-medium uk-margin-bottom" uk-grid>
   {% block actions %}
     <div class="uk-grid-small" uk-grid>
 		<div class="uk-width-2-3@l">
@@ -26,7 +26,9 @@
     <div class="uk-text-right">
     {% block actions-counter %}
     {% if actions_selection_counter %}
-        <span class="action-counter uk-label uk-label-default uk-text-secondary" data-actions-icnt="{{ cl.result_list|length }}">{{ selection_note }}</span>
+        <span class="uk-label uk-background-muted uk-text-secondary">
+        	<span uk-icon="icon: table; ratio: 0.75"></span> <span class="action-counter" data-actions-icnt="{{ cl.result_list|length }}">{{ selection_note }}</span>
+        </span>
         {% if cl.result_count != cl.result_list|length %}
         
         <span class="all hidden uk-label uk-label-warning uk-text-secondary" style="display: none"><span uk-icon="icon: warning; ratio: 0.75"></span> {{ selection_note_all }}</span>

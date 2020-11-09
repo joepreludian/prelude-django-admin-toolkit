@@ -164,26 +164,25 @@
     {# END Header #}
     {% endif %}
 
-    {% block messages %}
-        {% if messages %}
-        <ul class="messagelist">{% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
-        {% endfor %}</ul>
-        {% endif %}
-    {% endblock messages %}
+    
 
-    <!-- Content -->
+    {# -- Content -- #}
     {% comment %}<div id="content" class="{% block coltype %}colM{% endblock %}">{% endcomment %}
     <div class="prl-content">
         {% comment %}
-        {% block pretitle %}{% endblock %}
-        {% block content_title %}{% if title %}<h3>{{ title }}</h3>{% endif %}{% endblock %}
+        	{% block pretitle %}{% endblock %}
+        	{% block content_title %}{% if title %}<h3>{{ title }}</h3>{% endif %}{% endblock %}
         {% endcomment %}
-        {% block content %}
+        
+		
+		
+		{% block content %}
             {% block object-tools %}{% endblock %}
-            {{ content }}
+            	
+			{{ content }}
         {% endblock %}
-       	{% comment %} 
+       	
+		{% comment %} 
         {% block sidebar %}{% endblock %}
         {% endcomment %}
     </div>
