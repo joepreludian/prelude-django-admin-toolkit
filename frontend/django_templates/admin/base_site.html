@@ -29,9 +29,6 @@
 					
 				{% endfor %}
                 
-                <li class="uk-nav-header">About</li>
-                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> About Preludian</a></li>
-               
                 <li class="uk-padding-small"></li>
                 <ul uk-accordion>
                 <li>
@@ -56,7 +53,7 @@
         <nav class="uk-background-primary-2" uk-navbar>
             <div class="uk-navbar-left">
                 {# bar left - toggle button #}
-                <a class="uk-navbar-toggle" uk-toggle="target: #offcanvas-nav">
+                <a class="uk-navbar-toggle uk-hidden@m" uk-toggle="target: #offcanvas-nav">
                     <span uk-navbar-toggle-icon></span>
                 </a>
                 <a href="{% url 'admin:index' %}" class="uk-navbar-item uk-logo">
