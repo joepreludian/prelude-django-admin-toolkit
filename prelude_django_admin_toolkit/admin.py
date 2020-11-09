@@ -20,6 +20,8 @@ class PrlActionForm(helpers.ActionForm):
 class PrlModelAdmin(admin.ModelAdmin):
     form = PrlModelForm
     action_form = PrlActionForm
+    save_as = True
+    list_per_page = 50
 
 
 class PrlAdmin(admin.AdminSite):
