@@ -44,8 +44,8 @@
 
 {% block content %}
 <div id="content-main">
-	{# APP Header #}
-	<div class="uk-clearfix uk-background-muted uk-padding-remove">
+	{# APP Header - Gray bar with ADD and Filter actions #}
+    <div class="uk-clearfix uk-background-muted uk-padding-remove">
 		<div class="uk-padding uk-padding-remove-vertical" uk-height-match>
 			<div class="uk-float-left uk-padding-top uk-flex uk-flex-middle">
 				<span class="uk-text-lead">{{ cl.opts.verbose_name_plural|capfirst }}</span>
@@ -78,38 +78,50 @@
         </p>
         {{ cl.formset.non_form_errors }}
     {% endif %}
-    <div class="module Uk-clear-fix"> {# Changelist #}
+    <div class="module uk-clear-fix"> {# Changelist #}
+     
+      {# PROTOTYPE HELP #}
+      <div class="uk-margin">
+        <div class="uk-inline">
+            <span class="uk-form-icon" uk-icon="icon: user"></span>
+            <input class="uk-input" type="text">
+        </div>
+      </div>
       
       {# SEARCH {% block search %}{% search_form cl %}{% endblock %} #}
       
-      {% block date_hierarchy %}{% if cl.date_hierarchy %}{% date_hierarchy cl %}{% endif %}{% endblock %}
+      {% block date_hierarchy %}
+        
+        {% if cl.date_hierarchy %}
+            {% date_hierarchy cl %}
+        {% endif %}
+      
+      {% endblock %}
 
       {# Filter screen #}
       
       {% block filters %}
-      
-      {% if cl.has_filters %}
-      <div id="filters-modal" uk-modal>
-        <div class="uk-modal-dialog">
-            <button class="uk-modal-close-default" type="button" uk-close></button>
-            <div class="uk-modal-header">
-                <h3 class="uk-modal-title">{% trans 'Filter' %}</h3>
+          {% if cl.has_filters %}
+          <div id="filters-modal" uk-modal>
+            <div class="uk-modal-dialog">
+                <button class="uk-modal-close-default" type="button" uk-close></button>
+                <div class="uk-modal-header">
+                    <h3 class="uk-modal-title">{% trans 'Filter' %}</h3>
+                </div>
+                <div class="uk-modal-body">
+                
+                <div class="uk-child-width-1-2@s" uk-grid>
+                    {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
+                </div>
+                
+                </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">{% trans 'Cancel' %}</button>
+                    {# <button class="uk-button uk-button-primary uk-text-secondary" type="button">Save</button> #}
+                </div>
             </div>
-            <div class="uk-modal-body">
-            
-            <div class="uk-child-width-1-2@s" uk-grid>
-                {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
-            </div>
-            
-            </div>
-            <div class="uk-modal-footer uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close" type="button">{% trans 'Cancel' %}</button>
-                {# <button class="uk-button uk-button-primary uk-text-secondary" type="button">Save</button> #}
-            </div>
-        </div>
-      </div>
-      {% endif %}
-      
+          </div>
+          {% endif %}
       {% endblock %}
 
       <form id="changelist-form" method="post"{% if cl.formset and cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} novalidate>{% csrf_token %}
