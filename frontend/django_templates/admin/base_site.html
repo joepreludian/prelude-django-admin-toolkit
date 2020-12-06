@@ -30,7 +30,9 @@
 				{% endfor %}
                 
                 <li class="uk-padding-small"></li>
-                <ul uk-accordion>
+                
+				<li>
+				<ul uk-accordion>
                 <li>
                     <a class="uk-accordion-title uk-link-text" href="">All Applications</a>
                     <div class="uk-accordion-content">
@@ -40,6 +42,7 @@
                     </div>
                 </li>
                 </ul>
+				</li>
 
                 <li class="uk-nav-divider uk-padding-small"></li>
                 {% include 'admin/includes/nav_user_actions.html' %}
@@ -161,8 +164,6 @@
     {# END Header #}
     {% endif %}
 
-    
-
     {# -- Content -- #}
     {% comment %}<div id="content" class="{% block coltype %}colM{% endblock %}">{% endcomment %}
     <div class="prl-content">
@@ -171,8 +172,6 @@
         	{% block content_title %}{% if title %}<h3>{{ title }}</h3>{% endif %}{% endblock %}
         {% endcomment %}
         
-		
-		
 		{% block content %}
             {% block object-tools %}{% endblock %}
             	
