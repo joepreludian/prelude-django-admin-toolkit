@@ -7,10 +7,12 @@
   {% if cl.formset %}
   <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
   {% endif %}
+  
   {% if cl.formset or action_form %}
     <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
   {% endif %}
   {{ media.css }}
+  
   {% if not actions_on_top and not actions_on_bottom %}
     <style>
       #changelist table thead th:first-child {width: inherit}
@@ -19,9 +21,13 @@
 {% endblock %}
 
 {% block extrahead %}
-<!-- EXTRAHEAD -->
-{{ block.super }}
-{{ media.js }}
+    <!-- EXTRAHEAD -->
+    {{ block.super }}
+    {{ media.js }}
+{% endblock %}
+
+{% block extrafooter %}
+<script type="text/javascript" src="{% static 'prelude_django_admin_toolkit/js/admin_changelist.js' %}"></script>
 {% endblock %}
 
 {% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-list{% endblock %}

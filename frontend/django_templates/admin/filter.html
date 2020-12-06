@@ -5,9 +5,9 @@
         <h4>{% blocktrans with filter_title=title %} By {{ filter_title }} {% endblocktrans %}</h4>
         
         <div uk-form-custom="target: > * > span:first-child">
-            <select>
+            <select class="prl-filter-select">
             {% for choice in choices %}
-                <option {% if choice.selected %}selected{% endif %}>{{ choice.display }}</option> 
+                <option value="{{ choice.query_string|iriencode }}" {% if choice.selected %}selected{% endif %}>{{ choice.display }}</option> 
             {% endfor %}
             </select>
             <button class="uk-button uk-button-default" type="button" tabindex="-1">
