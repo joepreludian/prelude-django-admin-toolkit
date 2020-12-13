@@ -116,8 +116,8 @@
           {% endif %}
       {% endblock %}
       
-      <form id="changelist-search" method="get">
-      		<input id="searchbar" name="searchbar" type="text" />
+      <form id="changelist-search" method="get"> {# TODO: avoid chain search! #}
+      		<input id="searchbar" name="q" type="text" />
 			{% for pair in cl.params.items %}
     			{% if pair.0 != search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}">{% endif %}
 			{% endfor %}

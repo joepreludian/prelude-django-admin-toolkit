@@ -14,7 +14,7 @@ $(() => {
 
 	function perform_search(term) {
 		$('#searchbar').val(term);
-		$('#changelist-form').submit();
+		$('#changelist-search').submit();
 		//alert('Do search: ' + term);
 	};
 	
