@@ -27,6 +27,7 @@ function cleanWS() {
 
 function cleanTemplatesWS() {
     return src(`${templatesDestDir}/*`)
+		.pipe(clean());
 }
 
 /*
