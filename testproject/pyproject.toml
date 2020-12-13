@@ -6,9 +6,9 @@ authors = ["Jonhnatha Trigueiro <joepreludian@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-prelude-django-admin-toolkit = {path = ".."}
 pytest-django = "^4.0.0"
 pytest-cov = "^2.10.1"
+prelude-django-admin-toolkit = {path = "../", develop=true}
 
 [tool.poetry.dev-dependencies]
 neovim = "^0.3.1"
