@@ -80,15 +80,7 @@
     {% endif %}
     <div class="module uk-clear-fix"> {# Changelist #}
      
-      {# PROTOTYPE HELP #}
-      <div class="uk-margin">
-        <div class="uk-inline uk-width-1-1 uk-width-1-4@s">
-            <a href="#" class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></a>
-            <input class="uk-input uk-width-1-1" type="text">
-        </div>
-      </div>
-     
-      {% block search %}{% search_form cl %}{% endblock %}
+      {# block search has been moved to actions.html #}
       
       {# Filter screen #}
       
@@ -123,6 +115,13 @@
           </div>
           {% endif %}
       {% endblock %}
+      
+      <form id="changelist-search" method="get">
+      		<input id="searchbar" name="searchbar" type="text" />
+			{% for pair in cl.params.items %}
+    			{% if pair.0 != search_var %}<input type="hidden" name="{{ pair.0 }}" value="{{ pair.1 }}">{% endif %}
+			{% endfor %}
+	</form>
 
       <form id="changelist-form" method="post"{% if cl.formset and cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} novalidate>{% csrf_token %}
       {% if cl.formset %}
@@ -130,9 +129,20 @@
       {% endif %}
       
       {% block result_list %}
-          {% if action_form and actions_on_top and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+          {% if actions_on_top %}
+	          {% if action_form and cl.show_admin_actions or cl.search_fields %}
+	          	{% admin_actions %}
+	          {% endif %}
+          {% endif %}
+          
           {% result_list cl %}
-          {% if action_form and actions_on_bottom and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+          
+          {# test how action_form would work with bottom-bar #}
+          {% if actions_on_bottom %}
+			  {% if action_form and cl.show_admin_actions or cl.search_fields %}
+				  {% admin_actions %}
+			  {% endif %}
+          {% endif %}
       {% endblock %}
       
       {% block pagination %}{% pagination cl %}{% endblock %}

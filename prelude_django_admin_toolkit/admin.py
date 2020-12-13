@@ -14,7 +14,7 @@ from django.shortcuts import render
 class PrlActionForm(helpers.ActionForm):
     action = forms.ChoiceField()
     action.widget.attrs.update({
-        'class': 'uk-select uk-form-width-large uk-width-1-1'
+        'class': 'uk-select uk-width-1-1 uk-padding-remove-right'
     })
     
 

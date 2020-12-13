@@ -5,11 +5,30 @@ $(() => {
     });
 
 	$('select[name=action]').on('change', (obj) => {
-		if (confirm(gettext('Are you sure?'))) {
-			if (obj.target.value != '') { 
+		if (obj.target.value != '') { 
+			if (confirm(gettext('Are you sure?'))) {
 				$(obj.target).parents('form')[0].submit();
 			}
 		}
+	});
+
+	function perform_search(term) {
+		$('#searchbar').val(term);
+		$('#changelist-form').submit();
+		//alert('Do search: ' + term);
+	};
+	
+	$('.prl-search').on('keypress', (evt) => {
+		if (evt.which == 13) {
+			perform_search(evt.target.value);
+			return false;
+		}
+	});
+	
+	$('.prl-search-do').on('click', (evt) => {
+		perform_search(
+			$(evt.currentTarget).parent().find('input')[0].value
+		);
 	});
    
 });
