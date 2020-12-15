@@ -28,7 +28,7 @@ html {
 .uk-background-primary-2 { 
     background: lighten($global-primary-background, 5%);
     a { 
-		color: $global-link-color 
+		color: $global-link-color;
 	}
 	.uk-navbar-nav {
 		li {
@@ -44,7 +44,6 @@ html {
         &.uk-active {
             font-size: 2em;
         }
-        
     }
 }
 
@@ -58,6 +57,17 @@ html {
 			background-color: $global-primary-background !important;
 			color: $global-color !important;
 			padding: 10px 18px;
+		}
+	}
+	
+	ul.errorlist {
+		list-style-type: none;
+		margin: 0;
+		
+		li {
+			color: $global-warning-background;
+			display: inline;
+			 
 		}
 	}
 	
