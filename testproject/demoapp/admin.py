@@ -5,6 +5,7 @@ from prelude_django_admin_toolkit.admin import site as prl_admin
 from prelude_django_admin_toolkit import forms
 from prelude_django_admin_toolkit.admin import PrlModelAdmin
 
+
 @admin.register(TimeCapsule, site=prl_admin)
 class TimeCapsule(PrlModelAdmin):
 
@@ -21,13 +22,14 @@ class TimeCapsule(PrlModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'current_date', 'current_datetime')
+            'fields': (('name', 'current_date'), 'current_datetime')
         }),
         ('Subsection', {
             'fields': ('description',)
         }),
         ('Advanced section', {
-            'classes': ('collapse',),
+            'classes': ('collapse', 'tab'),
+            'description': 'A simple description',
             'fields': ('age',),
         }),
     )

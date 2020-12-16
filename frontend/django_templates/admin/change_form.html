@@ -61,9 +61,30 @@
 	{% endif %}
 
 	{% block field_sets %}
+	
+	<ul class="uk-child-width-expand" uk-tab>
+	{% for fieldset in adminform %}
+		<li><a href="#">{% if fieldset.name %}{{ fieldset.name }}{% else %}Main{% endif %}</a></li>
+	{% endfor %}	
+		
+	</ul>
+
+	<ul class="uk-switcher">
 	{% for fieldset in adminform %}
 	  {% include "admin/includes/fieldset.html" %}
 	{% endfor %}
+	</ul>
+	
+	<script>
+	    var para = document.getElementsByClassName("datetime");
+	    var i;
+	    for (i = 0; i < para.length; i++) {
+	        var input = para[i].getElementsByTagName('input');
+	        input[0].className = input[0].className + " vDateField";
+	        input[1].className = input[1].className + " vTimeField";
+	    }
+	</script>
+	
 	{% endblock %}
 
 	{% block after_field_sets %}{% endblock %}

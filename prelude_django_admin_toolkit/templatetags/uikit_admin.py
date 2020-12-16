@@ -16,6 +16,7 @@ def uka_form_row_stacked(element, errors='', classes=''):
         classes_tmp = classes + ' uk-form-danger'
         classes = classes_tmp
         class_margin_top = 'uk-margin-top'
+    
     element = element.as_widget(attrs={'class': classes})  # to remove (be done in js)
     html_error = format_html('<div class="uk-text-danger {}">{}</div>', class_margin_top, errors)
     html = format_html(

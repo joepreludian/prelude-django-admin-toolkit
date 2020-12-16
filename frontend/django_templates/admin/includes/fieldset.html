@@ -1,6 +1,7 @@
 {% load uikit_admin %}
-<div class="uk-panel uk-panel-header uk-panel-box uk-panel-box-secondary uk-margin-bottom">
-    <fieldset class="module aligned {{ fieldset.classes }}">
+<li>
+<div class="uk-panel uk-panel-header uk-panel-box uk-panel-box-secondary uk-margin-bottom"> {{ fieldset.classes }}
+    <div class="module aligned {{ fieldset.classes }} uk-form-horizontal">
         {% if fieldset.name %}<h2 class="uk-panel-title">{{ fieldset.name }}</h2>{% endif %}
         {% if fieldset.description %}
             <div class="description">{{ fieldset.description|safe }}</div>
@@ -31,17 +32,9 @@
                 {% endfor %}
             </div>
         {% endfor %}
-    </fieldset>
+    </div>
 </div>
-<script>
-    var para = document.getElementsByClassName("datetime");
-    var i;
-    for (i = 0; i < para.length; i++) {
-        var input = para[i].getElementsByTagName('input');
-        input[0].className = input[0].className + " vDateField";
-        input[1].className = input[1].className + " vTimeField";
-    }
-</script>
+</li>
 
 
 {% comment %}
