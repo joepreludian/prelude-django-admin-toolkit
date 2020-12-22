@@ -19,10 +19,10 @@
                                     class="uk-form-help-inline">{{ field.field.label }}</span></label>
                         {% else %}
                             {% if field.is_readonly %}
-                            {{ field.label_tag }}
-                            <p>{{ field.contents }}</p>
+                            	{{ field.label_tag }}
+                            	<p>{{ field.contents }}</p>
                             {% else %}
-                            {% uka_form_row_stacked field.field field.field.errors "uk-form-width-large" %}
+                            	{% uka_form_row_stacked field.field field.field.errors "uk-form-width-large" %}
                             {% endif %}
                         {% endif %}
                         {% if field.field.help_text %}
@@ -36,38 +36,15 @@
 </div>
 </li>
 
-
 {% comment %}
-<div class="uk-card uk-card-default uk-card-body uk-margin-bottom {{ fieldset.classes }}">
-    {% if fieldset.name %}<h3 class="uk-card-title">{{ fieldset.name }}</h3>{% endif %}
-    {% if fieldset.description %}
-        <div class="description">{{ fieldset.description|safe }}</div>
-    {% endif %}
-    {% for line in fieldset %}
-        <div class="form-row uk-margin{% if line.fields|length_is:'1' and line.errors %} errors{% endif %}{% if not line.has_visible_field %} uk-hidden hidden{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
-        	{% for field in line %}
-                <div{% if not line.fields|length_is:'1' %} class="fieldBox{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"{% elif field.is_checkbox %} class="checkbox-row"{% endif %}>
-                    
-                    {# {% if not line.fields|length_is:'1' and not field.is_readonly %}are{{ field.errors }}{% endif %} #}
-                    
-                    {{ field.errors }}
-                    
-                    {% if field.is_checkbox %}
-                        {{ field.field }}{{ field.label_tag }}
-                    {% else %}
-                        {{ field.label_tag }}
-                        {% if field.is_readonly %}
-                            <div class="readonly">{{ field.contents }}</div>
-                        {% else %}
-                            {{ field.field }}
-                        {% endif %}
-                    {% endif %}
-                    {% if field.field.help_text %}
-                        <div class="help">{{ field.field.help_text|safe }}</div>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-    {% endfor %}
-</div>
+<form class="uk-form-stacked">
+    <div>
+        <label class="uk-form-label"></label>
+        <div class="uk-form-controls">...</div>
+    </div>
+    <div>
+        <div class="uk-form-label"></div>
+        <div class="uk-form-controls">...</div>
+    </div>
+</form>
 {% endcomment %}
