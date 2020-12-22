@@ -1,4 +1,4 @@
-{% load i18n admin_urls static admin_list %}
+{% load i18n admin_urls static admin_list uikit_admin %}
 
 <div class="actions uk-child-width-expand uk-grid-medium uk-margin-bottom" uk-grid>
   {# BLOCK ACTIONS #}
@@ -13,7 +13,7 @@
 		{% block actions-form %}
 		<div class="uk-width-expand uk-padding-remove-right">	
 			{% for field in action_form %}
-				<div class="uk-padding-remove">{{ field }}</div>
+				<div class="uk-padding-remove">{% uk_element field 'uk-select' %}</div>
 			{% endfor %}
 		</div>	
 		{% endblock %}
