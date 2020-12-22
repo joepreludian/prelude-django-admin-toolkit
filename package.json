@@ -22,9 +22,9 @@
     "yargs-parser": ">=13.1.2"
   },
   "dependencies": {
-    "datatables.net-dt": "^1.10.22",
+    "datatables.net-dt": "^1.10.23",
     "jquery": "^3.5.1",
     "normalize.css": "^8.0.1",
-    "uikit": "^3.5.8"
+    "uikit": "^3.6.5"
   }
 }
