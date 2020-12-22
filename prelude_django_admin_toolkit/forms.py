@@ -27,7 +27,6 @@ class PrlModelForm(forms.ModelForm):
                 self.fields[key].widget.attrs['class'] = \
                     self.fields[key].widget.attrs['class'] + ' uk-input'
 
-            print(f'WIDGET NAME: {widget_type}')
             #self.fields[key].widget.attrs['class'] = self.fields[key].widget.attrs['class'] + ' uk-input'
 
             #if field_type == 'FileField':

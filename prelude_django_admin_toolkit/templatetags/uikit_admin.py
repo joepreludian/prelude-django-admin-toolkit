@@ -5,24 +5,42 @@ from django import template
 from django.forms.boundfield import BoundField
 from django.utils.html import format_html
 
+from django.forms.widgets import Select
+from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
+
 register = template.Library()
 
 
 @register.simple_tag
-def uka_form_row_stacked(element, errors='', classes=''):
-    class_margin_top = ''
-    label = BoundField.label_tag(element, "", {'class': 'uk-form-label'})
-    if errors:
-        classes_tmp = classes + ' uk-form-danger'
-        classes = classes_tmp
-        class_margin_top = 'uk-margin-top'
+def uka_form_row_stacked(element, errors='', extra_classes=''):
+    label = BoundField.label_tag(element, "", {'class': 'uk-form-label'}, label_suffix='')
     
-    element = element.as_widget(attrs={'class': classes})  # to remove (be done in js)
-    html_error = format_html('<div class="uk-text-danger {}">{}</div>', class_margin_top, errors)
-    html = format_html(
-        '<div class="uk-form-row">{}<div class="uk-form-controls">{}</div>{}</div>', label, element, html_error)
+    if errors:
+        extra_classes = f'{extra_classes} uk-form-danger uk-clearfix'
+    
+    # Trying to infer if I'm dealing with a select
+    
+    uk_select = ''
+    if issubclass(element.field.widget.__class__, Select):
+        uk_select = ' uk-select'
+    
+    if issubclass(element.field.widget.__class__, RelatedFieldWidgetWrapper):
+        uk_select = ' uk-select'
+    
+    element = element.as_widget(attrs={'class': f'uk-input {extra_classes}{uk_select}'})
+    
+    html_error = format_html(f'<div class="uk-text-danger uk-margin-top">{errors}</div>')
+    
+    html = format_html(f'<div class="uk-form-row"><div>{label} {html_error}</div>'
+                       f'<div class="uk-form-controls">{element}</div></div>')
     return html
 
+@register.simple_tag
+def uk_element (element, class_override=None):
+    element = element.as_widget(attrs={'class': 'uk-input' if class_override is None else class_override })
+    
+    return format_html(element)
+    
 
 @register.simple_tag
 def uka_form_row_stacked_button(text, classes=None):
@@ -35,11 +53,11 @@ def uka_form_row_stacked_button(text, classes=None):
 
 
 @register.simple_tag
-def uka_button(text, classes=None, type=None, name=None):
+def uka_button(text, classes=None, type_name=None, name=None):
     if classes is None:
         classes = ''
-    if type is None:
-        type = ''
+    if type_name is None:
+        type_name = ''
     if name is None:
         name = ''
     html = format_html(

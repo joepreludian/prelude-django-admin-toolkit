@@ -9,6 +9,8 @@ python = "^3.8"
 pytest-django = "^4.0.0"
 pytest-cov = "^2.10.1"
 prelude-django-admin-toolkit = {path = "../", develop=true}
+ipdb = "^0.13.4"
+pydevd = "^2.2.0"
 
 [tool.poetry.dev-dependencies]
 neovim = "^0.3.1"

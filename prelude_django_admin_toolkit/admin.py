@@ -20,8 +20,8 @@ class PrlActionForm(helpers.ActionForm):
 
 # Defining the PRLModelAdmin
 class PrlModelAdmin(admin.ModelAdmin):
-    form = PrlModelForm
-    action_form = PrlActionForm
+    #form = PrlModelForm
+    #action_form = PrlActionForm
     save_as = True
     list_per_page = 50
 
@@ -54,7 +54,6 @@ class PrlAdmin(admin.AdminSite):
  
         return context_vars
      
-
     def page_about(self, request):
         return render(request, 'admin/pages/about.html', self.each_context(request))
     
