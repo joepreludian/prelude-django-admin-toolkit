@@ -135,3 +135,11 @@ from .prelude_admin import my_admin
 PRELUDE_ADMIN = {
     'customizer_object': my_admin
 }
+
+import pydevd
+
+# Remote debugging: https://www.pydev.org/manual_adv_remote_debugger.html
+try:
+    pydevd.settrace(host='localhost', port=5678, stdout_to_server=True, stderr_to_server=True, suspend=False)
+except ConnectionRefusedError as e:
+    print('Unable to enable Pydev remote debugging')

@@ -10,14 +10,13 @@ from prelude_django_admin_toolkit.forms import PrlModelForm
 from django.http.response import HttpResponse
 from django.shortcuts import render
 
-
+'''
 class PrlActionForm(helpers.ActionForm):
     action = forms.ChoiceField()
     action.widget.attrs.update({
         'class': 'uk-select uk-width-1-1 uk-padding-remove-right'
-    })
-    
-
+    }) 
+'''
 # Defining the PRLModelAdmin
 class PrlModelAdmin(admin.ModelAdmin):
     #form = PrlModelForm

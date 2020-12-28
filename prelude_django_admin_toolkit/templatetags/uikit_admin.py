@@ -6,7 +6,7 @@ from django.forms.boundfield import BoundField
 from django.utils.html import format_html
 
 from django.forms.widgets import Select
-from django.contrib.admin.widgets import RelatedFieldWidgetWrapper
+from django.contrib.admin.widgets import RelatedFieldWidgetWrapper, AdminTextareaWidget
 
 register = template.Library()
 
@@ -18,21 +18,31 @@ def uka_form_row_stacked(element, errors='', extra_classes=''):
     if errors:
         extra_classes = f'{extra_classes} uk-form-danger uk-clearfix'
     
-    # Trying to infer if I'm dealing with a select
+    help_text = f'<div class="uk-text-muted"><span uk-icon="icon: comment"></span> {element.help_text}</div>' \
+        if element.help_text else ''
     
-    uk_select = ''
+    # Trying to infer if I'm dealing with a select
+    override_class = ''
     if issubclass(element.field.widget.__class__, Select):
-        uk_select = ' uk-select'
+        override_class = ' uk-select'
     
     if issubclass(element.field.widget.__class__, RelatedFieldWidgetWrapper):
-        uk_select = ' uk-select'
+        override_class = ' uk-select'
+        
+    if issubclass(element.field.widget.__class__, AdminTextareaWidget):
+        override_class = ' uk-textarea'
     
-    element = element.as_widget(attrs={'class': f'uk-input {extra_classes}{uk_select}'})
+    original_classes = element.field.widget.attrs.get('class', '')
+    
+    if element.field.__class__.__name__ == 'SplitDateTimeField':
+        element = element.as_widget()
+    else:
+        element = element.as_widget(attrs={'class': f'{original_classes} uk-input uk-margin-small-top uk-margin-small-bottom {extra_classes}{override_class}'})
     
     html_error = format_html(f'<div class="uk-text-danger uk-margin-top">{errors}</div>')
     
     html = format_html(f'<div class="uk-form-row"><div>{label} {html_error}</div>'
-                       f'<div class="uk-form-controls">{element}</div></div>')
+                       f'<div class="uk-form-controls">{element}{help_text}</div></div>')
     return html
 
 @register.simple_tag

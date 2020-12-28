@@ -9,7 +9,7 @@ from prelude_django_admin_toolkit.admin import PrlModelAdmin
 @admin.register(TimeCapsule, site=prl_admin)
 class TimeCapsule(PrlModelAdmin):
 
-    form = forms.PrlModelForm
+    #form = forms.PrlModelForm
 
     list_display = ['name', 'age', 'current_date']
 
