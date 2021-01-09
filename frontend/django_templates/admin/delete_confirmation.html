@@ -21,8 +21,7 @@
 
 {% block content %}
 <div class='uk-container uk-padding'>
-
-<h3><span uk-icon="icon: warning; ratio: 2"></span> Delete Item</h3>
+<h3><span uk-icon="icon: warning; ratio: 2"></span></h3>
 
 {% if perms_lacking %}
     <p>{% blocktrans with escaped_object=object %}Deleting the {{ object_name }} '{{ escaped_object }}' would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</p>
@@ -42,7 +41,7 @@
     <p>{% blocktrans with escaped_object=object %}Are you sure you want to delete the {{ object_name }} "{{ escaped_object }}"? All of the following related items will be deleted:{% endblocktrans %}</p>
     
     <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-margin uk-margin-bottom">
-		<div class="uk-grid-large uk-grid" uk-grid>
+		<div class="uk-grid-large uk-grid uk-grid-divider" uk-grid>
 		
 		
 		<div>
