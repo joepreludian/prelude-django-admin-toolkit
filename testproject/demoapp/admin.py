@@ -22,7 +22,7 @@ class TimeCapsule(PrlModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': (('name', 'current_date'), 'current_datetime')
+            'fields': ('name', 'current_date', 'current_datetime')
         }),
         ('Subsection', {
             'fields': ('description',)

@@ -22,28 +22,9 @@
 									{% uka_form_row_stacked field.field field.field.errors "uk-form-width-large" %}
 								{% endif %}
 							{% endif %}
-							
-							{% comment %}
-							{% if field.field.help_text %}
-								<p class="uk-text-small uk-margin-top-remove">{{ field.field.help_text|safe }}</p>
-							{% endif %}
-							{% endcomment %}
 						</div>
 					{% endfor %}
 				</div>
 			{% endfor %}
 		</div>
 	</div>
-
-{% comment %}
-<form class="uk-form-stacked">
-    <div>
-        <label class="uk-form-label"></label>
-        <div class="uk-form-controls">...</div>
-    </div>
-    <div>
-        <div class="uk-form-label"></div>
-        <div class="uk-form-controls">...</div>
-    </div>
-</form>
-{% endcomment %}
