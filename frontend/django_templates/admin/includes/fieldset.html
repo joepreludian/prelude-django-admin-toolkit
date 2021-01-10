@@ -9,12 +9,14 @@
 				<div class="{% if line.fields|length_is:'1' and line.errors %} errors{% endif %}{% if not line.has_visible_field %} hidden{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
 					{% for field in line %}
 						<div{% if not line.fields|length_is:'1' %}
-							class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"{% elif field.is_checkbox %}
-							class="checkbox-row"{% endif %}>
+							class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"
+							{% elif field.is_checkbox %}
+							class="checkbox-row"
+							{% endif %}>
 							{% if field.is_checkbox %}
-								<label>
-								{% uk_element field.field "uk-checkbox" %}
-								<span class="uk-form-help-inline">{{ field.field.label }}</span></label>
+									<label style="float: none">
+									{% uk_element field.field "uk-checkbox" %}
+									<span class="uk-form-help-inline">{{ field.field.label }}</span></label>
 							{% else %}
 								{% if field.is_readonly %}
 									{{ field.label_tag }}

@@ -34,7 +34,7 @@ def uka_form_row_stacked(element, errors='', extra_classes=''):
     
     original_classes = element.field.widget.attrs.get('class', '')
     
-    if element.field.__class__.__name__ == 'SplitDateTimeField':
+    if element.field.__class__.__name__ in ['SplitDateTimeField', 'ReadOnlyPasswordHashField', 'ModelMultipleChoiceField']:
         element = element.as_widget()
     else:
         element = element.as_widget(attrs={'class': f'{original_classes} uk-input uk-margin-small-top uk-margin-small-bottom {extra_classes}{override_class}'})
