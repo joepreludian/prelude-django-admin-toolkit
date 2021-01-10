@@ -46,19 +46,21 @@ def uka_form_row_stacked(element, errors='', extra_classes=''):
     return html
 
 @register.simple_tag
-def uk_element (element, class_override=None):
-    element = element.as_widget(attrs={'class': 'uk-input' if class_override is None else class_override })
+def uk_element (element, css_class_override=None):
     
+    if css_class_override is not None:
+        element = element.as_widget(attrs={'class': css_class_override })
+    else:
+        element = element.as_widget()
+        
     return format_html(element)
     
 
 @register.simple_tag
-def uka_form_row_stacked_button(text, classes=None):
+def uka_form_row_stacked_button(text, classes=None):  # @todo Fix this
     if classes is None:
         classes = ''
-    html = format_html(
-        '<div class="uk-form-row"><div class="uk-form-controls"><button class="uk-button {}">{}</button></div></div>',
-        classes, text)
+    html = format_html(f'<div class="uk-form-row"><div class="uk-form-controls"><button class="uk-button {classes}">{text}</button></div></div>')
     return html
 
 

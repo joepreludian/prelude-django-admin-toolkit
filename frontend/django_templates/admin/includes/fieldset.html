@@ -12,8 +12,9 @@
 							class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"{% elif field.is_checkbox %}
 							class="checkbox-row"{% endif %}>
 							{% if field.is_checkbox %}
-								<label>{{ field.field }}<span
-										class="uk-form-help-inline">{{ field.field.label }}</span></label>
+								<label>
+								{% uk_element field.field "uk-checkbox" %}
+								<span class="uk-form-help-inline">{{ field.field.label }}</span></label>
 							{% else %}
 								{% if field.is_readonly %}
 									{{ field.label_tag }}

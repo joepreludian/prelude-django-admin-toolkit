@@ -73,6 +73,19 @@ html {
 	
 	.related-widget-wrapper {
 		float: none;
+		
+		.selector-available, .selector-chosen {
+			h2 { 
+				font-size: 16px;
+				margin-bottom: 0;
+			 }
+		}
+		
+		.selector-chosen {
+			h2 {
+				background-color: $global-primary-background;
+			}
+		}
 	}
 	
 	.prl-scroll-list {
