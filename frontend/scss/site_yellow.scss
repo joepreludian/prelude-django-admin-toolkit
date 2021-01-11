@@ -88,6 +88,12 @@ html {
 		}
 	}
 	
+	.checkbox-row {
+		label {
+			float: none;	
+		}
+	}
+	
 	.prl-scroll-list {
 		max-height: 400px;
 		overflow-y: auto;		
