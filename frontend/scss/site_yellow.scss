@@ -99,4 +99,15 @@ html {
 		overflow-y: auto;		
 	}
 	
+	.prl-uk-button-success {
+		border-color: $global-success-background;
+		color: $global-success-background;		
+	}
+	
+	.prl-uk-button-success-2 {
+		background-color: $global-success-background;
+		border-color: $global-success-background;
+		color: white;
+	}
+	
 }

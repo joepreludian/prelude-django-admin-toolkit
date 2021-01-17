@@ -11,11 +11,14 @@ pytest-cov = "^2.10.1"
 prelude-django-admin-toolkit = {path = "../", develop=true}
 ipdb = "^0.13.4"
 pydevd = "^2.2.0"
+behave = "^1.2.6"
+behave-django = "^1.4.0"
+splinter = "^0.14.0"
 
 [tool.poetry.dev-dependencies]
 neovim = "^0.3.1"
 behave-django = "^1.4.0"
-splinter = "^0.13.0"
+splinter = "^0.14.0"
 django-livereload-server = "^0.3.2"
 honcho = "^1.0.1"
 
