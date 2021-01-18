@@ -1,10 +1,10 @@
-from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer, DIVIDER
+from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer, PreludeDefaultIndexPage, DIVIDER
 from django.utils.translation import gettext_lazy as _
 
 
 my_admin = PreludeAdminCustomizer(site_header='MyAdmin')
 
-my_admin.site_css = 'site_yellow.css'
+my_admin.site_css = 'site_default.css'
 
 my_admin.register_menu(
     name=_('Itemization'),
@@ -18,3 +18,7 @@ my_admin.register_menu(
     ])
 
 my_admin.register_menu(name=_('Project'), icon='user', to='http://terra.com.br')
+
+index = PreludeDefaultIndexPage()
+
+my_admin.configure_index(index = index)

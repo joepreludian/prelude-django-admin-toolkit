@@ -1,5 +1,37 @@
 DIVIDER = 'divider'
 
+
+class PreludeIndexPage(object):
+    
+    def __init__(self, template_name=None, show_apps=False):
+        '''
+        Constructor of PreludeIndexPage
+        '''
+    
+        self.template_name = template_name
+        self.show_apps = show_apps
+    
+    
+    def get_context(self, request):
+        '''
+        Data that it's going to be sent to view; You need to overwrite it in order to send your own data.
+        
+        Parameters:
+            request - Request object that it will be injected into this function before the final rendering; (in case to capture session)
+        '''
+        
+        return {}
+
+
+class PreludeDefaultIndexPage(PreludeIndexPage):
+    
+    def __init__(self, *args, **kwargs):
+        super(PreludeDefaultIndexPage, self).__init__(*args, **kwargs)
+        
+        self.template_name = 'admin/includes/index_customized.html'
+        self.show_apps = True      
+        
+
 class PreludeAdminCustomizer(object):
     
     def __init__(self, site_header=None, show_about=True):
@@ -7,6 +39,13 @@ class PreludeAdminCustomizer(object):
         self.main_menu = []
         self.site_css = 'site.css'
         self.show_about = show_about
+        
+        self.configure_index()
+        
+        
+    def configure_index(self, index = PreludeIndexPage()):
+        self.index = index
+        
 
     def register_menu(self, name, icon=None, to=None, items=None):
         menu_item = {
@@ -30,18 +69,18 @@ class PreludeAdminCustomizer(object):
         
         self.main_menu.append(menu_item)
 
-    def get_context_vars(self):
+    def get_context_vars(self, request):
         
         return {
             'custom_menu': self.main_menu,
             'admin': {
                 'site_css': self.site_css,
-                'show_about': self.show_about
+                'show_about': self.show_about,
+                'index': {
+                    'template_name': self.index.template_name,
+                    'show_apps': self.index.show_apps,
+                    'context': self.index.get_context(request)
+                }
             }
         }
-
-    def add_page(self, url, name, handler):
-        pass
-
-    def set_index_page(self, handler):
-        pass
+        

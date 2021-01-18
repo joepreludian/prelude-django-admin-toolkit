@@ -1,0 +1,113 @@
+//$global-color: #3A3A3A;
+//$global-link-color: #4F1060;
+//$global-link-color-active: green;
+//$global-primary-background: #ffd842;
+
+.uk-icon::before { background-image: url("uikit/tests/images/icons.svg"); }
+
+// 2. Import default variables and available mixins.
+@import "uikit/src/scss/variables-theme.scss";
+@import "uikit/src/scss/mixins-theme.scss";
+
+// 3. Your custom mixin overwrites.
+@mixin hook-card() { color: #000; }
+
+// 4. Import UIkit.
+@import "uikit/src/scss/uikit-theme";
+
+html {
+    font-family: 'Work Sans', sans-serif;
+    size: 14px;
+}
+
+.uk-breadcrumb {
+	padding: 0 10px;
+	margin-bottom: 0;
+}
+
+.uk-background-primary-2 { 
+    background: lighten($global-primary-background, 5%);
+    a { 
+		color: $global-link-color;
+	}
+	.uk-navbar-nav {
+		li {
+			a {		
+				color: $global-color;
+			}
+		}
+	}
+}
+
+.uk-offcanvas {
+    li {
+        &.uk-active {
+            font-size: 2em;
+        }
+    }
+}
+
+// Django Customizations
+.prl-content {
+	
+	.paginator {
+		border: none !important;
+		
+		a:link, a:visited { 
+			background-color: $global-primary-background !important;
+			color: $global-color !important;
+			padding: 10px 18px;
+		}
+	}
+	
+	ul.errorlist {
+		list-style-type: none;
+		margin: 0;
+		
+		li {
+			color: $global-warning-background;
+			display: inline;
+			 
+		}
+	}
+	
+	.related-widget-wrapper {
+		float: none;
+		
+		.selector-available, .selector-chosen {
+			h2 { 
+				font-size: 16px;
+				margin-bottom: 0;
+			 }
+		}
+		
+		.selector-chosen {
+			h2 {
+				background-color: $global-primary-background;
+			}
+		}
+	}
+	
+	.checkbox-row {
+		label {
+			float: none;	
+		}
+	}
+	
+	.prl-scroll-list {
+		max-height: 400px;
+		overflow-y: auto;		
+	}
+	
+	.prl-uk-button-success {
+		border-color: $global-success-background;
+		color: $global-success-background;		
+	}
+	
+	.prl-uk-button-success-2 {
+		background-color: $global-success-background;
+		border-color: $global-success-background;
+		color: white;
+	}
+	
+}

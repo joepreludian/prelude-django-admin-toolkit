@@ -9,6 +9,8 @@ from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer
 from prelude_django_admin_toolkit.forms import PrlModelForm
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from django.views.decorators.cache import never_cache
+
 
 '''
 class PrlActionForm(helpers.ActionForm):
@@ -49,7 +51,7 @@ class PrlAdmin(admin.AdminSite):
     def each_context(self, request):
         context_vars = super().each_context(request)
        
-        context_vars.update(self.prl_customizer.get_context_vars())
+        context_vars.update(self.prl_customizer.get_context_vars(request))
  
         return context_vars
      
@@ -68,6 +70,14 @@ class PrlAdmin(admin.AdminSite):
         
         return url_patterns
 
+    '''
+    @never_cache
+    def index(self, request, extra_context=None):
+        
+        context = {'name': 'JON123456'}
+        
+        return admin.AdminSite.index(self, request, extra_context=context)
+    '''
 
 site = PrlAdmin()
 

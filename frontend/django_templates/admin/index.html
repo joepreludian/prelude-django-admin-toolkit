@@ -16,7 +16,12 @@
 
 {% block content %}
 <div class="uk-container">
+
+{% if admin.index.template_name %}{% include admin.index.template_name %}{% endif %}
+
+{% if admin.index.show_apps %}
 {% include 'admin/includes/available_apps_index.html' %}
+{% endif %}
 
 </div>
 {% endblock %}
