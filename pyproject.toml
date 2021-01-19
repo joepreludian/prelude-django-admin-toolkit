@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "prelude-django-admin-toolkit"
-version = "0.9.0"
+version = "0.10.0"
 description = "An alternative Django Admin theme with Batteries; project Bruh"
 authors = ["Jonhnatha Trigueiro <joepreludian@gmail.com>"]
 include = ['prelude_django_admin_toolkit/static/**/*', 'prelude_django_admin_toolkit/templates/**/*']
