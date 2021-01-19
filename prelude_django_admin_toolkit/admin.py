@@ -45,7 +45,12 @@ class PrlAdmin(admin.AdminSite):
         self.load_customizer()
     
     def load_customizer(self):
-        self.site_header = self.prl_customizer.site_header
+        if self.prl_customizer.site_header:
+            self.site_header = self.prl_customizer.site_header
+        
+        if self.prl_customizer.site_title:
+            self.site_title = self.prl_customizer.site_title
+        
         self.show_about = self.prl_customizer.show_about
     
     def each_context(self, request):

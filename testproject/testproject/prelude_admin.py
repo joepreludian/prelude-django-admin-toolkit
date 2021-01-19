@@ -2,7 +2,7 @@ from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer, Prel
 from django.utils.translation import gettext_lazy as _
 
 
-my_admin = PreludeAdminCustomizer(site_header='MyAdmin')
+my_admin = PreludeAdminCustomizer(site_header='MyAdmin', site_title='Content MGMT Site')
 
 my_admin.site_css = 'site_default.css'
 

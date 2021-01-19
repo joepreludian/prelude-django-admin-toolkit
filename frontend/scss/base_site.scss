@@ -110,4 +110,22 @@ html {
 		color: white;
 	}
 	
+	.prl-text-success {
+		color: $global-success-background;
+	}
+	
+	.prl-text-warning {
+		color: $global-warning-background;
+	}
+	
+	.prl-text-danger {
+		color: $global-danger-background;
+	}
+	
+	.prl-text-success, .prl-text-warning, .prl-text-danger {
+		a {
+			color: inherit;
+		}
+	} 
+	
 }

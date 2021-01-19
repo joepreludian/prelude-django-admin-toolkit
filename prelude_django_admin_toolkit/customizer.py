@@ -34,10 +34,13 @@ class PreludeDefaultIndexPage(PreludeIndexPage):
 
 class PreludeAdminCustomizer(object):
     
-    def __init__(self, site_header=None, show_about=True):
+    def __init__(self, site_header=None, site_title=None, show_about=True):
         self.site_header = site_header
+        self.site_title = site_title
+        
         self.main_menu = []
-        self.site_css = 'site.css'
+        
+        self.site_css = 'site_default.css'
         self.show_about = show_about
         
         self.configure_index()
