@@ -73,13 +73,18 @@ pipeline {
                 branch 'master'
             }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'pypi-joepreludian', usernameVariable: 'PYPI_USER', passwordVariable: 'PYPI_TOKEN')]) {
-                    sh 'poetry config pypi-token.pypi "$PYPI_TOKEN"'
-                }
-
-                unstash name: 'dist'
-                
-                sh 'poetry publish'
+            	script {
+	
+	                withCredentials([usernamePassword(credentialsId: 'pypi-joepreludian', usernameVariable: 'PYPI_USER', passwordVariable: 'PYPI_TOKEN')]) {
+	                    sh 'poetry config pypi-token.pypi "$PYPI_TOKEN"'
+	                }
+	
+	                unstash name: 'dist'
+	                
+	                poetry_publish_log = sh (script: 'poetry publish', returnStdout: true).trim()
+	                
+	                slackSend(color: "good", message: "prelude_django_admin_toolkit Deployed to Pypi! \n\n${poetry_publish_log}")
+				}
             }
         }
     }
