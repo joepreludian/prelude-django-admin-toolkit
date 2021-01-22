@@ -18,7 +18,6 @@ class PrlModelForm(forms.ModelForm):
 
             #if field_type == 'CharField':
             widget_type = type(self.fields[key].widget).__name__
-            print(f'WIDGET TYPE: {widget_type}')
 
             if widget_type == 'AdminTextareaWidget':
                 self.fields[key].widget.attrs['class'] = \
@@ -27,7 +26,6 @@ class PrlModelForm(forms.ModelForm):
                 self.fields[key].widget.attrs['class'] = \
                     self.fields[key].widget.attrs['class'] + ' uk-input'
 
-            print(f'WIDGET NAME: {widget_type}')
             #self.fields[key].widget.attrs['class'] = self.fields[key].widget.attrs['class'] + ' uk-input'
 
             #if field_type == 'FileField':

@@ -1,78 +1,57 @@
-{% load i18n %}
+{% load i18n admin_urls static admin_list uikit_admin %}
 
-<div class="uk-child-width-expand uk-grid-medium" uk-grid>
-{% block actions %}
-	<div class="uk-form-stacked">
-		{% for field in action_form %}
-			{% if field.label %}<label class="uk-form-label" for="form-horizontal-text">{{ field.label }}</label>{% endif %}
-			<div class="uk-form-controls">{{ field }}</div>
-		{% endfor %}
-	</div>
-
-	{% block actions-submit %}
-		<div class="uk-flex uk-flex-bottom">
-			<button type="submit" class="uk-button" title="{% trans "Run the selected action" %}" name="index" value="{{ action_index|default:0 }}">{% trans "Go" %}</button>
-		</div>
-	{% endblock %}
-</div>
-
-<div class="uk-grid uk-child-width-expand">
-	<div class="uk-flex-bottom">
-	{% block actions-counter %}
-    {% if actions_selection_counter %}
-		<span class="action-counter" data-actions-icnt="{{ cl.result_list|length }}">{{ selection_note }}</span>
-        {% if cl.result_count != cl.result_list|length %}
-        <span class="all">{{ selection_note_all }}</span>
-        <span class="question">
-            <a href="#" title="{% trans "Click here to select the objects across all pages" %}">{% blocktrans with cl.result_count as total_count %}Select all {{ total_count }} {{ module_name }}{% endblocktrans %}</a>
-        </span>
-        <span class="clear"><a href="#">{% trans "Clear selection" %}</a></span>
-    	{% endif %}
-    {% endif %}
-    {% endblock %}
-	</div>
-</div>
-{% endblock %}
-</div>
-{% comment %} 
-<div class="actions uk-flex">
+<div class="actions uk-child-width-expand uk-grid-medium uk-margin-bottom" uk-grid>
+  {# BLOCK ACTIONS #}
   {% block actions %}
-    <div class="uk-flex uk-flex-middle">
-    {% block actions-form %}
-    	{% for field in action_form %}
-    		<div>
-				{% if field.label %}<label class="uk-form-label" for="form-horizontal-text">{{ field.label }}</label>{% endif %}
-				<div class="uk-form-controls">			
-		    		{{ field }}
-				</div>
-			</div>
-    	{% endfor %}
-    {% endblock %}
-    </div>
+    
+    {# Search field - Actions will be handled by admin_changelist.js #}
+    {% block search %}{% search_form cl %}{% endblock %}
    
-   	<div class="uk-flex uk-flex-middle"> 
-	{% block actions-submit %}
-		<div class="">
-			<button type="submit" class="uk-button" 
-					title="{% trans "Run the selected action" %}" 
-					name="index" value="{{ action_index|default:0 }}">{% trans "Go" %}</button>
+  	{# Action form #} 
+    <div uk-grid class="uk-width-expand@s">
+
+		{% block actions-form %}
+		<div class="uk-width-expand uk-padding-remove-right">	
+			{% for field in action_form %}
+				<div class="uk-padding-remove">{% uk_element field 'uk-select' %}</div>
+			{% endfor %}
+		</div>	
+		{% endblock %}
+		
+		{% comment %}
+		{% block actions-submit %}
+		<div class="uk-padding-remove">
+			<button type="submit" class="uk-button button" title="{% translate "Run the selected action" %}" name="index" value="{{ action_index|default:0 }}"><span uk-icon="icon:  forward; ratio: 1"></span></button>
 		</div>
-	{% endblock %}
+		{% endblock %}
+		{% endcomment %}
+		
+    </div>
     
-    
+    <div class="uk-text-right uk-width-expand@m">
     {% block actions-counter %}
     {% if actions_selection_counter %}
-        <span class="action-counter" data-actions-icnt="{{ cl.result_list|length }}">{{ selection_note }}</span>
-        {% if cl.result_count != cl.result_list|length %}
-        <span class="all">{{ selection_note_all }}</span>
-        <span class="question">
-            <a href="#" title="{% trans "Click here to select the objects across all pages" %}">{% blocktrans with cl.result_count as total_count %}Select all {{ total_count }} {{ module_name }}{% endblocktrans %}</a>
+        <span class="uk-label uk-background-muted uk-text-secondary">
+        	<span uk-icon="icon: table; ratio: 0.75"></span> <span class="action-counter" data-actions-icnt="{{ cl.result_list|length }}">{{ selection_note }}</span>
         </span>
-        <span class="clear"><a href="#">{% trans "Clear selection" %}</a></span>
+        {% if cl.result_count != cl.result_list|length %}
+        
+        <span class="all hidden uk-label uk-label-warning uk-text-secondary" style="display: none"><span uk-icon="icon: warning; ratio: 0.75"></span> {{ selection_note_all }}</span>
+        
+        <span class="question hidden" style="display: none">
+            <a href="#" class="uk-button uk-button-small" title="{% translate "Click here to select the objects across all pages" %}">
+            	<span uk-icon="icon: expand; ratio: 0.75"></span>
+            		{% blocktranslate with cl.result_count as total_count %}Select all{% endblocktranslate %}
+            </a>
+        </span>
+        <span class="clear hidden" style="display: none"><a href="#" class="uk-button uk-button-small"><span uk-icon="icon: close; ratio: 0.75"></span> {% translate "Clear selection" %}</a></span>
         {% endif %}
     {% endif %}
     {% endblock %}
+    
+    <span></span>
     </div>
+    
   {% endblock %}
 </div>
-{% endcomment %}
+

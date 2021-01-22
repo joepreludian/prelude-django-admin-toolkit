@@ -5,14 +5,18 @@ from prelude_django_admin_toolkit.admin import site as prl_admin
 from prelude_django_admin_toolkit import forms
 from prelude_django_admin_toolkit.admin import PrlModelAdmin
 
+
 @admin.register(TimeCapsule, site=prl_admin)
 class TimeCapsule(PrlModelAdmin):
 
-    form = forms.PrlModelForm
+    #form = forms.PrlModelForm
 
     list_display = ['name', 'age', 'current_date']
 
     list_filter = ['current_date', 'age']
+   
+    # @todo FIX date_hierarchy widget 
+    date_hierarchy = 'current_date'
     
     search_fields = ('name', )
 
@@ -24,7 +28,8 @@ class TimeCapsule(PrlModelAdmin):
             'fields': ('description',)
         }),
         ('Advanced section', {
-            'classes': ('collapse',),
+            'classes': ('collapse', 'tab'),
+            'description': 'A simple description',
             'fields': ('age',),
         }),
     )
@@ -33,3 +38,5 @@ class TimeCapsule(PrlModelAdmin):
 @admin.register(Item, site=prl_admin)
 class Item(PrlModelAdmin):
     list_display = ['name', 'item_no', 'time_capsule']
+    
+    list_filter = ['time_capsule']

@@ -29,11 +29,10 @@
 					
 				{% endfor %}
                 
-                <li class="uk-nav-header">About</li>
-                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> About Preludian</a></li>
-               
                 <li class="uk-padding-small"></li>
-                <ul uk-accordion>
+                
+				<li>
+				<ul uk-accordion>
                 <li>
                     <a class="uk-accordion-title uk-link-text" href="">All Applications</a>
                     <div class="uk-accordion-content">
@@ -43,6 +42,7 @@
                     </div>
                 </li>
                 </ul>
+				</li>
 
                 <li class="uk-nav-divider uk-padding-small"></li>
                 {% include 'admin/includes/nav_user_actions.html' %}
@@ -56,7 +56,7 @@
         <nav class="uk-background-primary-2" uk-navbar>
             <div class="uk-navbar-left">
                 {# bar left - toggle button #}
-                <a class="uk-navbar-toggle" uk-toggle="target: #offcanvas-nav">
+                <a class="uk-navbar-toggle uk-hidden@m" uk-toggle="target: #offcanvas-nav">
                     <span uk-navbar-toggle-icon></span>
                 </a>
                 <a href="{% url 'admin:index' %}" class="uk-navbar-item uk-logo">
@@ -88,23 +88,6 @@
 						</li>
 					{% endif %}
 					{% endfor %}
-					{% comment %}
-					<li class="uk-active"><a href="#">Temp</a></li>
-					
-					<li>
-                        <a href="#">Parent</a>
-                        <div class="uk-navbar-dropdown">
-                            <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li><a href="#"><span class="uk-margin-small-right" uk-icon="icon: table"></span> Item</a></li>
-                                <li><a href="#">Item</a></li>
-                                <li><a href="#">Item</a></li>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li><a href="#">Username</a></li>
-					{% endcomment %}
-
                 </ul>
             </div>
 
@@ -120,7 +103,7 @@
                 {% endcomment %}
                 <ul class="uk-navbar-nav uk-visible@m">
                 <li>
-                    <a href="#">{% trans 'All Apps' %}</a>
+                    <a href="#"><span uk-icon="menu" class="uk-margin-small-right"></span> {% trans 'All Apps' %}</a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
                             {% include 'admin/includes/nav_user_available_apps.html' %} 
@@ -164,26 +147,23 @@
     {# END Header #}
     {% endif %}
 
-    {% block messages %}
-        {% if messages %}
-        <ul class="messagelist">{% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
-        {% endfor %}</ul>
-        {% endif %}
-    {% endblock messages %}
-
-    <!-- Content -->
+    {# -- Content -- #}
     {% comment %}<div id="content" class="{% block coltype %}colM{% endblock %}">{% endcomment %}
     <div class="prl-content">
-    	{% comment %}
-        {% block pretitle %}{% endblock %}
-        {% block content_title %}{% if title %}<h3>{{ title }}</h3>{% endif %}{% endblock %}
+        {% comment %}
+        	{% block pretitle %}{% endblock %}
+        	{% block content_title %}{% if title %}<h3>{{ title }}</h3>{% endif %}{% endblock %}
         {% endcomment %}
-        {% block content %}
+        
+		{% block content %}
             {% block object-tools %}{% endblock %}
-            {{ content }}
+            	
+			{{ content }}
         {% endblock %}
+       	
+		{% comment %} 
         {% block sidebar %}{% endblock %}
+        {% endcomment %}
     </div>
     {% comment %}</div>{% endcomment %}
     <!-- END Content -->
