@@ -2,22 +2,23 @@ from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer, Prel
 from django.utils.translation import gettext_lazy as _
 
 
-my_admin = PreludeAdminCustomizer(site_header='MyAdmin', site_title='Content MGMT Site')
+my_admin = PreludeAdminCustomizer(site_header='OExpresso', site_title='Management System')
 
-my_admin.site_css = 'site_default.css'
+my_admin.site_css = 'site_yellow.css'
 
 my_admin.register_menu(
-    name=_('Itemization'),
-    icon='heart',
+    name=_('Subscribers'),
+    icon='social',
     items= [
-        {'name': _('Heart Item'), 'icon':'user', 'to': 'demoapp.item'},
-        {'name': _('External'), 'icon': 'heart', 'to': 'http://google.com'},
+        {'name': _('Patrons'), 'icon':'user', 'to': 'demoapp.item'},
+        {'name': _('Favorites'), 'icon': 'heart', 'to': 'http://google.com'},
         {'type': DIVIDER },
-        {'name': _('External 2'), 'to': 'demoapp.item'},
-        {'name': _('External 2'), 'to': 'demoapp.item'}
+        {'name': _('Dummy Text 1'), 'to': 'demoapp.item'},
+        {'name': _('Dummy Text 2'), 'to': 'demoapp.item'}
     ])
 
 my_admin.register_menu(name=_('Project'), icon='user', to='http://terra.com.br')
+my_admin.register_menu(name=_('Test'), icon='star', to='http://terra.com.br')
 
 index = PreludeDefaultIndexPage()
 

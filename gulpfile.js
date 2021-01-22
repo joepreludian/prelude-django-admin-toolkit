@@ -6,6 +6,7 @@ const concat = require('gulp-concat'),
       cleanCSS = require('gulp-clean-css'),
       rename = require('gulp-rename'),
       clean = require('gulp-clean'),
+	  babel = require('gulp-babel'),
       watch = require('gulp-watch'),
       plumber = require('gulp-plumber');
 
@@ -108,6 +109,9 @@ function watchHTMLTemplates() {
 
 function uglifyJS() {
     return src(`${assetsDestDir}/js/**/*.js`)
+		.pipe(babel({
+			presets: ['@babel/preset-env']
+		}))
         .pipe(uglify())
         .pipe(dest(`${assetsDestDir}/js`));
 }
