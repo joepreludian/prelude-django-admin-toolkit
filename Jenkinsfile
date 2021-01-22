@@ -79,11 +79,17 @@ pipeline {
 
                 unstash name: 'dist'
                 
-                //sh 'poetry publish'
+                sh 'poetry publish'
             }
         }
     }
     post {
+    	success {
+	        slackSend(color: "good", message: "Build of prelude_django_admin_toolkit succeed!")
+	    }
+	 	failure {
+	 	    slackSend(color: "bad", message: "prelude_django_admin_toolkit Failed. Please verify!")
+	 	}
     	always {
         	sh 'docker container prune -f'
     	}
