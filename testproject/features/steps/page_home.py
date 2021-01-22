@@ -29,3 +29,16 @@ def then_I_see_info(context):
 
     print(f'BODY TEXT: {body.text}')
     assert 'TEST' in body.text
+
+@when('I access the logout page')
+def when_I_go_to_logout_page(context):
+    br = context.browser
+    
+    br.find_by_css('.prl-username-item').mouse_over()
+    
+
+@when('I click on the logout button')
+def when_I_click_on_logout_button(context):
+    br = context.browser
+    
+    br.links.find_by_partial_text('Log out').click()
