@@ -34,7 +34,7 @@ class PreludeDefaultIndexPage(PreludeIndexPage):
 
 class PreludeAdminCustomizer(object):
     
-    def __init__(self, site_header=None, site_title=None, show_about=True):
+    def __init__(self, site_header=None, site_title=None, show_about=True, enable_pwa=True):
         self.site_header = site_header
         self.site_title = site_title
         
@@ -44,6 +44,8 @@ class PreludeAdminCustomizer(object):
         self.show_about = show_about
         
         self.configure_index()
+        self.enable_pwa = enable_pwa
+        
         
         
     def configure_index(self, index = PreludeIndexPage()):
@@ -79,6 +81,7 @@ class PreludeAdminCustomizer(object):
             'admin': {
                 'site_css': self.site_css,
                 'show_about': self.show_about,
+                'enable_pwa': self.enable_pwa,
                 'index': {
                     'template_name': self.index.template_name,
                     'show_apps': self.index.show_apps,

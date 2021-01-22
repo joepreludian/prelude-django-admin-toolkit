@@ -5,10 +5,7 @@
 
 {% if not is_popup %}
 {% block breadcrumbs %}
-<ul class="uk-breadcrumb">
-    <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
-    <li><span>{% for app in app_list %}{{ app.name }}{% endfor %}</span></li>
-</ul>
+	{% include 'admin/widgets/breadcrumbs_change_password.html' %}
 {% endblock %}
 {% endif %}
 
