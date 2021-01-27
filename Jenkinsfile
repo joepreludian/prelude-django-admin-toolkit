@@ -26,7 +26,7 @@ pipeline {
                 unstash name: 'build'
                 
            		echo 'Compiling messages...'
-           		sh 'apk add gettext'
+           		sh 'apk add gettext build-base gcc cmake python3-dev linux-headers gcc libffi-dev libressl-dev'
                 sh 'poetry install'
                 sh 'poetry run python manage.py compilemessages'
              	
