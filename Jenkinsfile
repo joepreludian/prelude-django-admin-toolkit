@@ -4,7 +4,7 @@ pipeline {
         stage('Node Build') { 
             agent {
                 docker {
-                    image 'docker.io/node:latest'
+                    image 'docker.io/node:14-buster'
                 }
             }
             steps {
