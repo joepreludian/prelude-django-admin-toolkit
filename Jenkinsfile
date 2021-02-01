@@ -7,10 +7,12 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                //jenkinsUtils = new JenkinsUtils()
-                poetryUtils = new PoetryUtils()
-                data = poetryUtils.getInfo()
-                println(data)
+                script {
+                    //jenkinsUtils = new JenkinsUtils()
+                    poetryUtils = new PoetryUtils()
+                    data = poetryUtils.getInfo()
+                    println(data)
+                }
             }
         }
 //         stage('Assets and Templates') {
