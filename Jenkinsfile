@@ -11,7 +11,9 @@ pipeline {
                     //jenkinsUtils = new JenkinsUtils()
                     poetryUtils = new PoetryUtils()
                     data = poetryUtils.getInfo()
-                    println(data)
+
+                    figlet('PoetryData')
+                    print(data)
                 }
             }
         }
