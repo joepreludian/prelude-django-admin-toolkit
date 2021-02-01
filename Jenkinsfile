@@ -1,12 +1,13 @@
 @Library('prelude-ectojks@main') _
 
-import com.preludian.ectojs.*
+import com.preludian.ectojs.PoetryUtils
+import com.preludian.ectojs.JenkinsUtils
 
 pipeline {
     agent any
     stages {
         stage('Test') {
-            jenkinsUtils = new JenkinsUtils()
+            //jenkinsUtils = new JenkinsUtils()
             poetryUtils = new PoetryUtils()
             data = poetryUtils.getInfo()
             println(data)
