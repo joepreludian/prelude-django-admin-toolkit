@@ -8,7 +8,6 @@ pipeline {
         stage('Test') {
             jenkinsUtils = new JenkinsUtils()
             poetryUtils = new PoetryUtils()
-
             data = poetryUtils.getInfo()
             println(data)
         }
