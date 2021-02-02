@@ -1,6 +1,6 @@
 @Library('prelude-ectojks@main') _
 
-import com.preludian.ectojks.PoetryUtils
+import com.preludian.ectojks.*
 
 pipeline {
     agent any
