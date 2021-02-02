@@ -39,9 +39,9 @@ pipeline {
             }
             steps {
                 script {
-                    pythonVersion = sh(script: 'python --version').trim()
-                    pipVersion = sh(script: 'pip --version').trim()
-                    poetryVersion = sh(script: 'poetry --version').trim()
+                    pythonVersion = sh(script: 'python --version', returnStdout: true).trim()
+                    pipVersion = sh(script: 'pip --version', returnStdout: true).trim()
+                    poetryVersion = sh(script: 'poetry --version', returnStdout: true).trim()
                 }
                 unstash name: 'build'
 
