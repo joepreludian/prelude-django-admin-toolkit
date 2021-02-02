@@ -1,6 +1,6 @@
 @Library('prelude-ectojks@main') _
 
-import com.preludian.ectojks.*
+import com.preludian.ectojks.PoetryUtils
 
 pipeline {
     agent any
@@ -10,6 +10,7 @@ pipeline {
                 script {
                     //jenkinsUtils = new JenkinsUtils()
                     poetryUtils = new PoetryUtils()
+                    echo 'Get Poetry Metadata'
                     data = PoetryUtils.getPoetryMetadata()
 
                     figlet('PoetryData')
