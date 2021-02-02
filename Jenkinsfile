@@ -10,7 +10,7 @@ pipeline {
                 script {
                     //jenkinsUtils = new JenkinsUtils()
                     poetryUtils = new PoetryUtils()
-                    data = PoetryUtils.getInfo()
+                    data = PoetryUtils.getPoetryMetadata
 
                     figlet('PoetryData')
                     print(data)
