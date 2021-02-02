@@ -8,8 +8,9 @@ pipeline {
         stage('Test') {
             steps {
                 script {
+                    poetryUtils = new PoetryUtils()
                     echo 'Get Poetry Metadata'
-                    data = new PoetryUtils().getPoetryMetadata()
+                    data = poetryUtils.getPoetryMetadata()
 
                     figlet('PoetryData')
                     print(data)
