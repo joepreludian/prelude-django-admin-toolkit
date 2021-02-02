@@ -124,6 +124,7 @@ pipeline {
 //             }
 //         }
     }
+/*
     post {
     	success {
 	        slackSend(color: "good", message: "Build of prelude_django_admin_toolkit succeed!")
@@ -135,4 +136,5 @@ pipeline {
         	sh 'docker container prune -f'
     	}
     }
+*/
 }
