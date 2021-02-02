@@ -8,10 +8,8 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    //jenkinsUtils = new JenkinsUtils()
-                    poetryUtils = new PoetryUtils()
                     echo 'Get Poetry Metadata'
-                    data = PoetryUtils.getPoetryMetadata()
+                    data = new PoetryUtils().getPoetryMetadata()
 
                     figlet('PoetryData')
                     print(data)
