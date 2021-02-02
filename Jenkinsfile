@@ -14,6 +14,8 @@ pipeline {
 
                     figlet('PoetryData')
                     print(data)
+
+                    figlet(data['version'])
                 }
             }
         }
