@@ -1,15 +1,8 @@
-from django import forms
 from django.contrib import admin
 from django.conf import settings
-from django.contrib.admin import helpers
-from django.utils.translation import gettext as _
-
 
 from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer
-from prelude_django_admin_toolkit.forms import PrlModelForm
-from django.http.response import HttpResponse
 from django.shortcuts import render
-from django.views.decorators.cache import never_cache
 
 
 '''
@@ -19,7 +12,8 @@ class PrlActionForm(helpers.ActionForm):
         'class': 'uk-select uk-width-1-1 uk-padding-remove-right'
     }) 
 '''
-# Defining the PRLModelAdmin
+
+
 class PrlModelAdmin(admin.ModelAdmin):
     #form = PrlModelForm
     #action_form = PrlActionForm
