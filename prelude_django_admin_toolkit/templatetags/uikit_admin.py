@@ -21,28 +21,43 @@ def uka_form_row_stacked(element, errors='', extra_classes=''):
     help_text = f'<div class="uk-text-muted"><span uk-icon="icon: comment"></span> {element.help_text}</div>' \
         if element.help_text else ''
     
-    # Trying to infer if I'm dealing with a select
-    override_class = ''
-    if issubclass(element.field.widget.__class__, Select):
-        override_class = ' uk-select'
-    
-    if issubclass(element.field.widget.__class__, RelatedFieldWidgetWrapper):
-        override_class = ' uk-select'
-        
-    if issubclass(element.field.widget.__class__, AdminTextareaWidget):
-        override_class = ' uk-textarea'
-    
     original_classes = element.field.widget.attrs.get('class', '')
     
+    applied_classes = 'uk-margin-small-top uk-margin-small-bottom'
+    
+    if element.field.widget.__class__.__name__ == "Select":
+        applied_classes = f'{original_classes} uk-select'
+    
+    elif element.field.widget.__class__.__name__ == "RelatedFieldWidgetWrapper":
+        applied_classes = f'{original_classes} uk-select'
+        
+    elif element.field.widget.__class__.__name__ in ["AdminTextareaWidget", "TextareaWidget"]:
+        applied_classes = f'{original_classes} uk-textarea'
+    else:
+        applied_classes = original_classes
+    
+
+    print(f'Widget: {element.field.__class__.__name__}')
+    
+    # Trying some overrides
     if element.field.__class__.__name__ in ['SplitDateTimeField', 'ReadOnlyPasswordHashField', 'ModelMultipleChoiceField']:
         element = element.as_widget()
+    
+    elif element.field.__class__.__name__ == 'TextareaWidget':
+        element = element.as_widget(attrs={'class': f'{applied_classes}'})
+   
+    #elif element.field.__class__.__name__ == 'DateWidget':
+    #    element = element.as_widget(attrs={'class': f'{applied_classes} uk-input uk-form-width-large uk-form-width-small'})
+    
     else:
-        element = element.as_widget(attrs={'class': f'{original_classes} uk-input uk-margin-small-top uk-margin-small-bottom {extra_classes}{override_class}'})
+        element = element.as_widget(attrs={'class': f'uk-input uk-form-width-large {applied_classes} {extra_classes}'})
     
     html_error = format_html(f'<div class="uk-text-danger uk-margin-top">{errors}</div>')
     
-    html = format_html(f'<div class="uk-form-row"><div>{label} {html_error}</div>'
-                       f'<div class="uk-form-controls">{element}{help_text}</div></div>')
+    html = format_html(f'<div class="uk-form-row">' \
+                       f'    <div>{label} {html_error}</div>' \
+                       f'    <div class="uk-form-controls" style="clear: both">{element}{help_text}</div>' \
+                       f'</div>')
     return html
 
 @register.simple_tag

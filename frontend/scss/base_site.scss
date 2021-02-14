@@ -128,11 +128,25 @@ html {
 		}
 	}
 	
-	.clockbox {
-		h2 {
-			font-size: 18px;
-			padding: 0 16px;
-		}
-	}
-	
+		
 }
+
+.clockbox {
+	h2 {
+		font-size: 18px;
+		padding: 4px 29px;
+		margin-bottom: 0;
+		background: $global-primary-background;
+	}
+}
+
+.calendar {
+	table {
+		caption {
+			background: $global-primary-background;
+			font-size: 18px;
+			padding: 1px 0;
+		}	
+	}
+}
+
