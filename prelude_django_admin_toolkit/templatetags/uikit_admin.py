@@ -18,7 +18,7 @@ def uka_form_row_stacked(element, errors='', extra_classes=''):
     if errors:
         extra_classes = f'{extra_classes} uk-form-danger uk-clearfix'
     
-    help_text = f'<div class="uk-text-muted"><span uk-icon="icon: comment"></span> {element.help_text}</div>' \
+    help_text = f'<div class="uk-text-muted uk-margin-small-top"><span uk-icon="icon: comment"></span> {element.help_text}</div>' \
         if element.help_text else ''
     
     original_classes = element.field.widget.attrs.get('class', '')
@@ -36,8 +36,6 @@ def uka_form_row_stacked(element, errors='', extra_classes=''):
     else:
         applied_classes = original_classes
     
-
-    print(f'Widget: {element.field.__class__.__name__}')
     
     # Trying some overrides
     if element.field.__class__.__name__ in ['SplitDateTimeField', 'ReadOnlyPasswordHashField', 'ModelMultipleChoiceField']:
@@ -46,9 +44,6 @@ def uka_form_row_stacked(element, errors='', extra_classes=''):
     elif element.field.__class__.__name__ == 'TextareaWidget':
         element = element.as_widget(attrs={'class': f'{applied_classes}'})
    
-    #elif element.field.__class__.__name__ == 'DateWidget':
-    #    element = element.as_widget(attrs={'class': f'{applied_classes} uk-input uk-form-width-large uk-form-width-small'})
-    
     else:
         element = element.as_widget(attrs={'class': f'uk-input uk-form-width-large {applied_classes} {extra_classes}'})
     

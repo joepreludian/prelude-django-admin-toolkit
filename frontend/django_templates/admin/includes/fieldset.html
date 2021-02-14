@@ -12,13 +12,11 @@
 							" {% if line.fields|length > 1 %}uk-grid{% endif %}>
 							
 					{% for field in line %}
-						{% comment %}
-						<!-- <div{% if not line.fields|length_is:'1' %}
+						<div{% if not line.fields|length_is:'1' %}
 							class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"
 							{% elif field.is_checkbox %}
 							class="checkbox-row"
-							{% endif %}> -->
-						{% endcomment %}
+							{% endif %}>
 							{% if field.is_checkbox %}
 									<label class="uk-form-label">
 									{% uk_element field.field "uk-checkbox" %}
@@ -31,9 +29,7 @@
 									{% uka_form_row_stacked field.field field.field.errors %}{# uk-form-width-large #}
 								{% endif %}
 							{% endif %}
-						{% comment %}
-						<!-- </div> -->
-						{% endcomment %}
+						</div>
 					{% endfor %}
 				</div>
 			{% endfor %}
