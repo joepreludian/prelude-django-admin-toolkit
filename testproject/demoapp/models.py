@@ -19,3 +19,10 @@ class Item(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+
+class ExtraItems(models.Model):
+    name = models.CharField(max_length=22)
+
+    def __str__(self):
+        return f'{self.name}'

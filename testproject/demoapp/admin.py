@@ -1,5 +1,5 @@
 from django.contrib import admin
-from demoapp.models import TimeCapsule, Item
+from demoapp.models import TimeCapsule, Item, ExtraItems
 
 from prelude_django_admin_toolkit.admin import site as prl_admin
 from prelude_django_admin_toolkit import forms
@@ -7,7 +7,7 @@ from prelude_django_admin_toolkit.admin import PrlModelAdmin
 
 
 @admin.register(TimeCapsule, site=prl_admin)
-class TimeCapsule(PrlModelAdmin):
+class TimeCapsuleAdmin(PrlModelAdmin):
 
     #form = forms.PrlModelForm
 
@@ -36,7 +36,12 @@ class TimeCapsule(PrlModelAdmin):
 
 
 @admin.register(Item, site=prl_admin)
-class Item(PrlModelAdmin):
+class ItemAdmin(PrlModelAdmin):
     list_display = ['name', 'item_no', 'time_capsule']
     
     list_filter = ['time_capsule']
+
+
+@admin.register(ExtraItems, site=prl_admin)
+class ExtraItemsAdmin(PrlModelAdmin):
+    pass
