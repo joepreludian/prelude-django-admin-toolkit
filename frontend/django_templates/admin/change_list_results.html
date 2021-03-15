@@ -11,7 +11,7 @@
 		<thead>
 			<tr>
 			{% for header in result_headers %}
-			<th class="uk-background-muted">
+			<th class="uk-background-muted{% if 'action-checkbox-column' in header.class_attrib %} uk-table-shrink{% endif %}">
 			   {% if header.sortable %}
 				 {% if header.sort_priority > 0 %}
 				   <span class="sortoptions uk-label uk-label-secondary uk-text-secondary">
