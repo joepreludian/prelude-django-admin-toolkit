@@ -37,6 +37,7 @@ class PreludeAdminCustomizer(object):
     def __init__(self, site_header=None, site_title=None, show_about=True, enable_pwa=True):
         self.site_header = site_header
         self.site_title = site_title
+        self.site_logo = None
         
         self.main_menu = []
         
@@ -45,13 +46,16 @@ class PreludeAdminCustomizer(object):
         
         self.configure_index()
         self.enable_pwa = enable_pwa
-        
-        
-        
-    def configure_index(self, index = PreludeIndexPage()):
+        self.index = None
+
+    def configure_site_logo(self, header_logo=None):
+        self.site_logo = {
+            'header_logo': header_logo
+        }
+
+    def configure_index(self, index=PreludeIndexPage()):
         self.index = index
         
-
     def register_menu(self, name, icon=None, to=None, items=None):
         menu_item = {
             'name': name,
@@ -82,6 +86,7 @@ class PreludeAdminCustomizer(object):
                 'site_css': self.site_css,
                 'show_about': self.show_about,
                 'enable_pwa': self.enable_pwa,
+                'logo': self.site_logo,
                 'index': {
                     'template_name': self.index.template_name,
                     'show_apps': self.index.show_apps,
@@ -89,4 +94,3 @@ class PreludeAdminCustomizer(object):
                 }
             }
         }
-        

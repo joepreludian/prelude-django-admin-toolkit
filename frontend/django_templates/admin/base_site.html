@@ -17,14 +17,16 @@
 						<li class="uk-nav-header"><a href="{{ menu.to }}">
 							{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
 					{% else %}
-						<li class="uk-nav-header"><a href="#">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
-						{% for submenu in menu.items %}
+						<li class="uk-nav-header"><a href="{% if menu.to %}{{ menu.to }}{% else %}#{% endif %}">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
+						<div class="uk-padding-small">
+                        {% for submenu in menu.items %}
 							{% if submenu.type == 'divider' %}
-								<li class="uk-nav-divider"></li>	
+								<li class="uk-nav-divider"></li>
 							{% else %}
 								<li><a href="{{ submenu.to }}">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ submenu.icon }}"></span> {% endif %} {{ submenu.name }}</a></li>
 							{% endif %}
 						{% endfor %}
+                        </div>
 					{% endif %}
 					
 				{% endfor %}
@@ -53,40 +55,43 @@
     
     <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
         
-        <nav class="uk-background-primary-2" uk-navbar>
+        <nav class="uk-background-primary-top-header uk-light" uk-navbar>
             <div class="uk-navbar-left">
                 {# bar left - toggle button #}
                 <a class="uk-navbar-toggle uk-hidden@m" uk-toggle="target: #offcanvas-nav">
                     <span uk-navbar-toggle-icon></span>
                 </a>
-                <a href="{% url 'admin:index' %}" class="uk-navbar-item uk-logo">
+                <a href="{% url 'admin:index' %}" class="uk-navbar-item uk-logo uk-link-reset">
                     {% block branding %}
-                        {# @todo add ability to override Title default #}
-                        {{ site_header|default:_('Django administration') }}
+                        {% if admin.logo and admin.logo.header_logo %}
+                            <img src="{% static admin.logo.header_logo %}" alt="{{ site_header|default:_('Django administration') }}"/>
+                        {% else %}
+                            {{ site_header|default:_('Django administration') }}
+                        {% endif %}
                     {% endblock %}
                 </a>
                 {# Main Menu #}
-                <ul class="uk-navbar-nav uk-visible@m">
+                <ul class="uk-navbar-nav uk-visible@m uk-active">
                 	{% for menu in custom_menu %}
-					{% if not menu.items %}
-						<li><a href="{{ menu.to }}">
-							{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
-					{% else %}
-						<li>
-							<a href="#">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a>
-							<div class="uk-navbar-dropdown">
-								<ul class="uk-nav uk-navbar-dropdown-nav">
-									{% for submenu in menu.items %}
-										{% if submenu.type == 'divider' %}
-											<li class="uk-nav-divider"></li>	
-										{% else %}
-											<li><a href="{{ submenu.to }}">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ submenu.icon }}"></span> {% endif %} {{ submenu.name }}</a></li>
-										{% endif %}
-									{% endfor %}
-								</ul>
-							</div>
-						</li>
-					{% endif %}
+                        {% if not menu.items %}
+                            <li><a href="{{ menu.to }}">
+                                {% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a></li>
+                        {% else %}
+                            <li>
+                                <a href="#">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ menu.icon }}"></span> {% endif %}{{ menu.name }}</a>
+                                <div class="uk-navbar-dropdown">
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        {% for submenu in menu.items %}
+                                            {% if submenu.type == 'divider' %}
+                                                <li class="uk-nav-divider"></li>
+                                            {% else %}
+                                                <li><a href="{{ submenu.to }}">{% if menu.icon %}<span class="uk-margin-small-right" uk-icon="icon: {{ submenu.icon }}"></span> {% endif %} {{ submenu.name }}</a></li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </li>
+                        {% endif %}
 					{% endfor %}
                 </ul>
             </div>
@@ -137,7 +142,7 @@
             <ul class="uk-breadcrumb uk-margin-remove">
                 <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a></li>
                 {% if title %}
-                <li><span>{{ tilte }}</span></li>
+                <li><span>{{ title }}</span></li>
                 {% endif %}
             </ul>
         {% endblock %}

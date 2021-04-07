@@ -37,7 +37,7 @@ class TimeCapsuleAdmin(PrlModelAdmin):
 
 @admin.register(Item, site=prl_admin)
 class ItemAdmin(PrlModelAdmin):
-    list_display = ['name', 'item_no', 'time_capsule']
+    list_display = ['name', 'item_no']
     
     list_filter = ['time_capsule']
 
