@@ -52,10 +52,10 @@
 
         </div>
     </div>
-    
+    {# MAIN NAVIGATION BAR #}
     <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
         
-        <nav class="uk-background-primary-top-header uk-light" uk-navbar>
+        <nav class="uk-background-primary-top-header" uk-navbar>
             <div class="uk-navbar-left">
                 {# bar left - toggle button #}
                 <a class="uk-navbar-toggle uk-hidden@m" uk-toggle="target: #offcanvas-nav">
@@ -71,7 +71,7 @@
                     {% endblock %}
                 </a>
                 {# Main Menu #}
-                <ul class="uk-navbar-nav uk-visible@m uk-active">
+                <ul class="uk-navbar-nav uk-visible@m uk-link-reset">
                 	{% for menu in custom_menu %}
                         {% if not menu.items %}
                             <li><a href="{{ menu.to }}">
@@ -106,19 +106,19 @@
                     </form>
                 </div>
                 {% endcomment %}
-                <ul class="uk-navbar-nav uk-visible@m">
-                <li>
-                    <a href="#"><span uk-icon="menu" class="uk-margin-small-right"></span> {% trans 'All Apps' %}</a>
-                    <div class="uk-navbar-dropdown">
-                        <ul class="uk-nav uk-navbar-dropdown-nav">
-                            {% include 'admin/includes/nav_user_available_apps.html' %} 
-                        </ul>
-                    </div>
-                </li>
+                <ul class="uk-navbar-nav uk-visible@m uk-link-reset">
+                    <li>
+                        <a href="#"><span uk-icon="menu" class="uk-margin-small-right"></span> {% trans 'All Apps' %}</a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                {% include 'admin/includes/nav_user_available_apps.html' %}
+                            </ul>
+                        </div>
+                    </li>
                 </ul>
 
                 <!-- <a class="uk-navbar-toggle" uk-toggle="target: #offcanvas-nav"></a> -->
-                <ul class="uk-navbar-nav uk-visible@m">
+                <ul class="uk-navbar-nav uk-visible@m uk-link-reset">
                     {% block usertools %}
                     {% if has_permission %}
                     <li class='prl-username-item'>

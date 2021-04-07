@@ -1,6 +1,13 @@
 $global-color: #1a1a1a;
 $global-link-color: #4F1060;
-$global-link-color-active: #b17102;
-$global-primary-background: rgb(164, 39, 242);
+$global-link-color-active: #9c27b0;
+$global-primary-background: rgb(148, 45, 173);
+$global-muted-background: #f0f0f0;
 
-@import "frontend/scss/base_site.scss";
+
+@import "frontend/scss/base_theme.scss";
+
+.uk-background-primary-top-header {
+  background: linear-gradient(to left, $global-primary-background, darken($global-primary-background, 10%));
+  @extend .uk-light !optional;
+}

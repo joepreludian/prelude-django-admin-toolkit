@@ -17,10 +17,12 @@ $global-primary-background: rgb(38, 162, 105);
 // 4. Import UIkit.
 @import "uikit/src/scss/uikit-theme";
 
+/*
 html {
     font-family: 'Work Sans', sans-serif;
     size: 14px;
 }
+*/
 
 .uk-breadcrumb {
 	padding: 0 10px;
@@ -29,8 +31,6 @@ html {
 
 .uk-background-primary-top-header {  //For main page
 	background: linear-gradient(to top, $global-primary-background, darken($global-primary-background, 15%));
-
-	color: #fff !important;
 }
 
 .uk-offcanvas {
@@ -119,6 +119,15 @@ html {
 	.prl-text-success, .prl-text-warning, .prl-text-danger {
 		a {
 			color: inherit;
+		}
+	}
+
+	.uk-table {
+		tr {
+			td.action-checkbox {
+				vertical-align: middle;
+				text-align: center;
+			}
 		}
 	}
 }

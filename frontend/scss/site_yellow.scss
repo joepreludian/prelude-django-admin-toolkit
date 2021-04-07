@@ -3,7 +3,11 @@ $global-link-color: #4F1060;
 $global-link-color-active: #4F1060;
 $global-primary-background: #ffd842;
 
-@import "frontend/scss/base_site.scss";
+@import "frontend/scss/base_theme.scss";
+
+.uk-background-primary-top-header {
+	@extend .uk-dark !optional;
+}
 
 .prl-content {
 	

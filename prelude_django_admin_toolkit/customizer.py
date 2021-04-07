@@ -48,9 +48,10 @@ class PreludeAdminCustomizer(object):
         self.enable_pwa = enable_pwa
         self.index = None
 
-    def configure_site_logo(self, header_logo=None):
+    def configure_site_logo(self, header_logo=None, bigger_logo=None):
         self.site_logo = {
-            'header_logo': header_logo
+            'header_logo': header_logo,
+            'bigger_logo': bigger_logo
         }
 
     def configure_index(self, index=PreludeIndexPage()):

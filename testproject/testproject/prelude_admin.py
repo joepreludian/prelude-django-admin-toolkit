@@ -7,7 +7,6 @@ my_admin = PreludeAdminCustomizer(site_header='SiteProject', site_title='Site Ti
 my_admin.site_css = 'site_default.css'
 my_admin.configure_site_logo(header_logo='project_logo.png')
 
-
 my_admin.register_menu(
     name=_('Subscribers'),
     icon='social',
