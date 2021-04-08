@@ -43,9 +43,9 @@ pipeline {
             }
             steps {
                 script {
-                    pythonVersion = sh(script: 'python --version', returnStdout: true).trim()
-                    pipVersion = sh(script: 'pip --version', returnStdout: true).trim()
-                    poetryVersion = sh(script: 'poetry --version', returnStdout: true).trim()
+                    pythonVersion = sh(script: 'python --version | cut -d ' ' -f 2', returnStdout: true).trim()
+                    pipVersion = sh(script: 'pip --version | cut -d ' ' -f 2', returnStdout: true).trim()
+                    poetryVersion = sh(script: 'poetry --version | cut -d ' ' -f 3', returnStdout: true).trim()
                 }
                 unstash name: 'build'
 
@@ -60,7 +60,7 @@ pipeline {
                     sh 'poetry install'
                     sh 'poetry run python manage.py check'
                     sh 'poetry run coverage run --source="." manage.py test'
-                    sh 'poetry run coverage xml -o coverage-reports/coverage.xml'
+                    sh 'poetry run coverage xml -o coverage-reports/coverage-project.xml'
                     // sh 'poetry run pytest --cov prelude_django_admin_toolkit --cov-report html --cov-report xml'
                     sh 'poetry run python manage.py behave'
 
