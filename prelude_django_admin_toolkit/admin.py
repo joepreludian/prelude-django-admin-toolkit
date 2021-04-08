@@ -32,6 +32,8 @@ class PrlAdmin(admin.AdminSite):
                 'customizer_object': PreludeAdminCustomizer()
             }
 
+        self.show_about = False
+
         self.prl_customizer = custom_settings['customizer_object']
         self.load_customizer()
 
@@ -57,12 +59,14 @@ class PrlAdmin(admin.AdminSite):
     def get_urls(self):
         from django.urls import path
 
-        url_patterns = super().get_urls()
+        url_patterns = []
 
         if self.show_about:
-            url_patterns.append(
+            url_patterns += [
                 path('about/', self.admin_view(self.page_about), name='about')
-            )
+            ]
+
+        url_patterns += super().get_urls()
 
         return url_patterns
 

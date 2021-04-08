@@ -2,7 +2,7 @@ from prelude_django_admin_toolkit.customizer import PreludeAdminCustomizer, Prel
 from django.utils.translation import gettext_lazy as _
 
 
-my_admin = PreludeAdminCustomizer(site_header='SiteProject', site_title='Site Title')
+my_admin = PreludeAdminCustomizer(site_header='SiteProject', site_title='Site Title', show_about=True)
 
 my_admin.site_css = 'site_default.css'
 my_admin.configure_site_logo(header_logo='project_logo.png')
