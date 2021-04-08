@@ -78,7 +78,7 @@ pipeline {
                     ])
                 }
 
-                stash name: 'code_coverage', includes: 'coverage-reports/**/*'
+                stash name: 'code_coverage', includes: 'coverage-reports/*'
              	stash name: 'build', includes: 'prelude_django_admin_toolkit/**/*'
      		}
  		}
