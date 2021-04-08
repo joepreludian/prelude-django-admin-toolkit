@@ -7,6 +7,7 @@ pipeline {
     options {
         timeout(time: 40, unit: 'MINUTES')
         disableConcurrentBuilds()
+        ansiColor('xterm')
     }
     stages {
         stage('Project Info') {
@@ -76,9 +77,10 @@ pipeline {
                         reportFiles: 'index.html',
                         reportName: "Pytest Coverage"
                     ])
+
+                    stash name: 'code_coverage', includes: '**/*coverage*.xml'
                 }
 
-                stash name: 'code_coverage', includes: 'testproject/coverage-reports/*'
              	stash name: 'build', includes: 'prelude_django_admin_toolkit/**/*'
      		}
  		}
