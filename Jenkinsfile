@@ -61,7 +61,6 @@ pipeline {
                     sh 'poetry run python manage.py check'
                     sh 'poetry run coverage run --source="." manage.py test'
                     sh 'poetry run coverage xml -o coverage-reports/coverage-project.xml'
-                    // sh 'poetry run pytest --cov prelude_django_admin_toolkit --cov-report html --cov-report xml'
                     sh 'poetry run python manage.py behave'
 
                     withCredentials([string(credentialsId: 'codecov-joepreludian-prelude_bruh', variable: 'CODECOV_TOKEN')]) {
@@ -79,6 +78,7 @@ pipeline {
                     ])
                 }
 
+                stash name: 'code_coverage', includes: 'coverage-reports/**/*'
              	stash name: 'build', includes: 'prelude_django_admin_toolkit/**/*'
      		}
  		}
@@ -105,6 +105,7 @@ pipeline {
                 SONAR_LOGIN = credentials('sonarqube-prelude-django-admin-toolkit')
             }
             steps {
+                unstash name: 'code_coverage'
                 sh "sonar-scanner -Dsonar.login=\$SONAR_LOGIN -Dsonar.projectVersion=${poetryData['version']} -Dsonar.qualitygate.wait"
             }
         }
