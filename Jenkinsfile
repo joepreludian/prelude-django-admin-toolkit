@@ -78,7 +78,7 @@ pipeline {
                         reportName: "Pytest Coverage"
                     ])
 
-                    stash name: 'code_coverage', includes: 'testproject/**/*coverage*.xml'
+                    stash name: 'code_coverage', includes: '**/*coverage*.xml'
                 }
 
              	stash name: 'build', includes: 'prelude_django_admin_toolkit/**/*'
