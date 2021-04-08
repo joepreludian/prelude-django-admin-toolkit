@@ -4,6 +4,10 @@ import com.preludian.ectojks.*
 
 pipeline {
     agent any
+    options {
+        timeout(time: 40, unit: 'MINUTES')
+        disableConcurrentBuilds()
+    }
     stages {
         stage('Project Info') {
             steps {
