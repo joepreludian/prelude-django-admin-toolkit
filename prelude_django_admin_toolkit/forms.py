@@ -1,6 +1,7 @@
 from django import forms
-#from base.widgets import ClearableUUIDSecureFileInput
-#from django_select2.forms import Select2Widget
+# from base.widgets import ClearableUUIDSecureFileInput
+# from django_select2.forms import Select2Widget
+
 
 class PrlModelForm(forms.ModelForm):
 
@@ -14,9 +15,9 @@ class PrlModelForm(forms.ModelForm):
         for key in self.fields.keys():
             field_type = type(self.fields[key]).__name__
 
-            #print(f'FIELD TYPE: {field_type}')
+            # print(f'FIELD TYPE: {field_type}')
 
-            #if field_type == 'CharField':
+            # if field_type == 'CharField':
             widget_type = type(self.fields[key].widget).__name__
 
             if widget_type == 'AdminTextareaWidget':

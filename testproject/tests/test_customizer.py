@@ -18,6 +18,7 @@ class PreludeAdminCustomizerTestCase(TestCase):
                 'site_css': 'site_default.css',
                 'show_about': True,
                 'enable_pwa': True,
+                'logo': None,
                 'index': {
                     'template_name': None,
                     'show_apps': False,
@@ -38,6 +39,7 @@ class PreludeAdminCustomizerTestCase(TestCase):
                 'site_css': 'site_default.css',
                 'show_about': True,
                 'enable_pwa': True,
+                'logo': None,
                 'index': {
                     'template_name': None,
                     'show_apps': False,
@@ -93,3 +95,11 @@ class PreludeAdminCustomizerTestCase(TestCase):
         context = self.c.get_context_vars(self.request)
         
         self.assertEqual(context['admin']['site_css'], 'another_site_default.css')
+
+    def test_add_logo(self):
+        self.c.configure_site_logo(header_logo='header_logo_img.png')
+
+        context = self.c.get_context_vars(self.request)
+
+        self.assertNotEqual(context['admin']['logo'], None)
+        self.assertEqual(context['admin']['logo'], {'header_logo': 'header_logo_img.png', 'bigger_logo': None})

@@ -43,10 +43,11 @@ class PreludeAdminCustomizer(object):
         
         self.site_css = 'site_default.css'
         self.show_about = show_about
-        
-        self.configure_index()
-        self.enable_pwa = enable_pwa
+
         self.index = None
+        self.configure_index()
+
+        self.enable_pwa = enable_pwa
 
     def configure_site_logo(self, header_logo=None, bigger_logo=None):
         self.site_logo = {
