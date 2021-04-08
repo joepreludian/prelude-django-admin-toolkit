@@ -56,6 +56,7 @@ pipeline {
                     sh 'poetry install'
                     sh 'poetry run python manage.py check'
                     sh 'poetry run coverage run --source="." manage.py test'
+                    sh 'poetry run coverage xml'
                     // sh 'poetry run pytest --cov prelude_django_admin_toolkit --cov-report html --cov-report xml'
                     sh 'poetry run python manage.py behave'
 
