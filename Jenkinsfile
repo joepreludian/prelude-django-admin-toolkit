@@ -91,6 +91,17 @@ pipeline {
                 stash name: 'dist', includes: 'dist/**/*'
             }
         }
+        stage('sonarQube') {
+            agent {
+                docker { image 'sonarsource/sonar-scanner-cli:4.6' }
+            }
+            environment {
+                SONAR_LOGIN = credentials('sonarqube-prelude-django-admin-toolkit')
+            }
+            steps {
+                sh "sonar-scanner -Dsonar.login=\$SONAR_LOGIN -Dsonar.projectVersion=${poetryData['version']} -Dsonar.qualitygate.wait"
+            }
+        }
         stage('Deploy') {
             agent {
                 docker {
