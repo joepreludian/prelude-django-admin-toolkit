@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 my_admin = PreludeAdminCustomizer(site_header='SiteProject', site_title='Site Title', show_about=True)
 
-my_admin.site_css = 'site_default.css'
+my_admin.site_css = 'site_yellow.css'
 my_admin.configure_site_logo(header_logo='project_logo.png')
 
 my_admin.register_menu(
@@ -22,4 +22,4 @@ my_admin.register_menu(name=_('Test'), icon='star', to='http://google.com')
 
 index = PreludeDefaultIndexPage()
 
-my_admin.configure_index(index = index)
+my_admin.configure_index(index=index)
