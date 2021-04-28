@@ -1,4 +1,4 @@
-<div class="datetime" uk-grid>
-  <div>{% with widget=widget.subwidgets.0 %}{% include widget.template_name %}{% endwith %}</div>
-  <div>{% with widget=widget.subwidgets.1 %}{% include widget.template_name %}{% endwith %}</div>
+<div class="datetime uk-grid-collapse uk-child-width-expand" uk-grid>
+  <div class="uk-padding-small uk-padding-remove-vertical uk-padding-remove-left">{% with widget=widget.subwidgets.0 %}{% include widget.template_name %}{% endwith %}</div>
+  <div class="uk-padding-small uk-padding-remove-vertical uk-padding-remove-right">{% with widget=widget.subwidgets.1 %}{% include widget.template_name %}{% endwith %}</div>
 </div>

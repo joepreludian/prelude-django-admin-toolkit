@@ -11,3 +11,119 @@ $global-muted-background: #f0f0f0;
   background: linear-gradient(to left, $global-primary-background, darken($global-primary-background, 10%));
   @extend .uk-light !optional;
 }
+
+.datetime {
+
+  padding-left: 0;
+
+  br {
+    display: none;
+  }
+
+  .timezonewarning {
+    @extend .uk-text-truncate !optional;
+    display: block !important;
+    margin: 4px;
+  }
+
+  .datetimeshortcuts {
+    display: block;
+    margin-left: 2px;
+
+    a {
+      @extend .uk-button !optional;
+      @extend .uk-button-default !optional;
+      @extend .uk-button-small !optional;
+    }
+  }
+
+}
+
+
+.timelist {
+  background: #fff;
+  a {
+    &:hover {
+      color: $global-primary-background !important;
+    }
+  }
+}
+
+.vLargeTextField {
+  width: auto !important;
+  @extend .uk-width-expand !optional;
+}
+
+ul.errorlist {
+  padding: 0 !important;
+
+  li {
+    background: red;
+    @extend .uk-label !optional;
+    @extend .uk-label-warning !optional;
+    color: #fff !important;
+  }
+}
+
+.calendarbox {
+  background: #fff;
+
+  .calendar table caption {
+    @extend .uk-light !optional;
+  }
+
+  a {
+    &:hover {
+      color: $global-primary-background !important;
+    }
+  }
+
+  .calendar-shortcuts {
+    background: #fdfdfd;
+  }
+}
+
+.clockbox {
+  h2 {
+    @extend .uk-light !optional;
+  }
+}
+
+label {
+  @extend .uk-form-label !optional;
+  width: auto !important;
+  float: none !important;
+}
+
+input[type=text] {
+  @extend .uk-input !optional;
+}
+
+input[type=password] {
+  @extend .uk-input !optional;
+}
+
+input[type=number] {
+  @extend .uk-input !optional;
+}
+
+input[type=radio] {
+  @extend .uk-radio !optional;
+}
+
+input[type=checkbox] {
+  @extend .uk-radio !optional;
+}
+
+input[type=range] {
+  @extend .uk-range !optional;
+}
+
+textarea {
+  @extend .uk-textarea !optional;
+}
+
+select {
+  font-size: 18px;
+  @extend .uk-select !optional;
+}

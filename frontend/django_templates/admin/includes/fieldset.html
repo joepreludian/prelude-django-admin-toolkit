@@ -5,14 +5,63 @@
 			{% if fieldset.description %}
 				<div class="description">{{ fieldset.description|safe }}</div>
 			{% endif %}
-			{% for line in fieldset %}
-				<div class="{% if line.fields|length_is:'1' and line.errors %} errors{% endif %}
-							{% if not line.has_visible_field %} hidden{% endif %}
-							{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}
-							" {% if line.fields|length > 1 %}uk-grid{% endif %}>
-							
+
+            {% for line in fieldset %} {# Line of fieldset #}
+                <div class="uk-grid-collapse uk-child-width-expand@s uk-width-5-6@xl" uk-grid>
+                {% for field in line %}
+                <div {# % if forloop.last and forloop.counter0 == 0 %}class="uk-width-3-4@l"{% endif % #}> {# A regular field - Adding a field in order to check if this entry is alone on the row #}
+                    <div class="uk-padding-small">
+
+                    {% if field.is_checkbox %}
+                        {{ field.field }}{{ field.label_tag }}
+                    {% else %}
+                        {{ field.label_tag }}
+                        <div class="uk-form-controls">
+                        {% if field.is_readonly %}
+                            <div class="readonly">{{ field.contents }}</div>
+                        {% else %}
+                            {{ field.field }}
+                        {% endif %}
+
+                        {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                        </div>
+                    {% endif %}
+
+                    {% if field.field.help_text %}
+                        <div class="uk-text-muted">{{ field.field.help_text|safe }}</div>
+                    {% endif %}
+                    </div>
+                </div> {# field #}
+                {% endfor %}
+                </div>
+            {% endfor %}
+
+            {% comment %}
+            {% for line in fieldset %}
+                <div{% if not line.fields|length_is:'1' %}
+                    class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"
+                {% elif field.is_checkbox %}
+                    class="checkbox-row"
+                {% endif %}>
+
 					{% for field in line %}
-						<div{% if not line.fields|length_is:'1' %}
+                        {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                        {% if field.is_checkbox %}
+                            {{ field.field }}{{ field.label_tag }}
+                        {% else %}
+                            {{ field.label_tag }}
+                            {% if field.is_readonly %}
+                                <div class="readonly">{{ field.contents }}</div>
+                            {% else %}
+                                {{ field.field }}
+                            {% endif %}
+                        {% endif %}
+                        {% if field.field.help_text %}
+                            <div class="help">{{ field.field.help_text|safe }}</div>
+                        {% endif %}
+
+						{% comment %}
+                        <div{% if not line.fields|length_is:'1' %}
 							class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"
 							{% elif field.is_checkbox %}
 							class="checkbox-row"
@@ -26,12 +75,15 @@
 									{{ field.label_tag }}
 									<p>{{ field.contents }}</p>
 								{% else %}
-									{% uka_form_row_stacked field.field field.field.errors %}{# uk-form-width-large #}
+                                    {{ field.field }}
+									{# {% uka_form_row_stacked field.field field.field.errors %}{# uk-form-width-large #}
 								{% endif %}
 							{% endif %}
 						</div>
+						{# FIM COMMENT #}
 					{% endfor %}
 				</div>
 			{% endfor %}
+            {% endcomment %}
 		</div>
 	</div>

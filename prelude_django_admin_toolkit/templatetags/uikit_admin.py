@@ -38,17 +38,19 @@ def uka_form_row_stacked(element, errors='', extra_classes=''):
     
     
     # Trying some overrides
-    if element.field.__class__.__name__ in ['SplitDateTimeField', 'ReadOnlyPasswordHashField', 'ModelMultipleChoiceField']:
+    '''
+    if element.field.__class__.__name__ in ['SplitDateTimeField', 'ReadOnlyPasswordHashField', 'ModelMultipleChoiceField', 'QuillField']:
         element = element.as_widget()
     
     elif element.field.__class__.__name__ == 'TextareaWidget':
         element = element.as_widget(attrs={'class': f'{applied_classes}'})
    
     else:
-        element = element.as_widget(attrs={'class': f'uk-input uk-form-width-large {applied_classes} {extra_classes}'})
+    '''
+    element = element.as_widget(attrs={'class': f'uk-input uk-form-width-large {applied_classes} {extra_classes}'})
     
     html_error = format_html(f'<div class="uk-text-danger uk-margin-top">{errors}</div>')
-    
+
     html = format_html(f'<div class="uk-form-row">' \
                        f'    <div>{label} {html_error}</div>' \
                        f'    <div class="uk-form-controls" style="clear: both">{element}{help_text}</div>' \

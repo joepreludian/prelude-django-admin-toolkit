@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "prelude-django-admin-toolkit"
-version = "0.14.6"
+version = "0.14.7"
 description = "An alternative Django Admin theme with Batteries; project Bruh"
 authors = ["Jonhnatha Trigueiro <joepreludian@gmail.com>"]
 include = ['prelude_django_admin_toolkit/static/**/*', 'prelude_django_admin_toolkit/templates/**/*']
@@ -8,6 +8,7 @@ include = ['prelude_django_admin_toolkit/static/**/*', 'prelude_django_admin_too
 [tool.poetry.dependencies]
 python = "^3.8"
 django = "^3"
+django-quill-editor = "^0.1.22"
 
 [tool.poetry.dev-dependencies]
 neovim = "^0.3.1"

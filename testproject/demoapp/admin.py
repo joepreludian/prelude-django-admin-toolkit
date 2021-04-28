@@ -1,5 +1,5 @@
 from django.contrib import admin
-from demoapp.models import TimeCapsule, Item, ExtraItems
+from demoapp.models import TimeCapsule, Item, ExtraItems, QuillEditor
 
 from prelude_django_admin_toolkit.admin import site as prl_admin
 from prelude_django_admin_toolkit import forms
@@ -45,3 +45,17 @@ class ItemAdmin(PrlModelAdmin):
 @admin.register(ExtraItems, site=prl_admin)
 class ExtraItemsAdmin(PrlModelAdmin):
     pass
+
+
+@admin.register(QuillEditor, site=prl_admin)
+class QuillAdmin(PrlModelAdmin):
+    fieldsets = (
+        (None, {
+            'fields': (
+                'title', ('datetime', 'date'),
+                'editor',
+                'json_data',
+                ('simple_choices', 'integer_field'),
+                'item_fk')
+        }),
+    )
